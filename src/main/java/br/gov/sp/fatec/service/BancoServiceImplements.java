@@ -17,7 +17,7 @@ public class BancoServiceImplements implements BancoService{
 	
 	@Autowired
 	public BancoRepository bancRep;	
-
+/*
 	@Override
 	@Transactional
 	public Boolean incluiBanco(String nome, String tipo, String versao, String porta, String desenvolvedor, String ip) {
@@ -30,11 +30,17 @@ public class BancoServiceImplements implements BancoService{
 		}
 		
 		return false;
-	}
+	}*/
 
 	@Override
-	public Banco incluiBancoClasse(Banco banco) {
-		return bancRep.save(banco);
+	public Boolean incluiBancoClasse(Banco banco) {
+		if(bancRep.findByContport(banco.getPorta())!=1) {
+			bancRep.save(banco);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

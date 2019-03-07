@@ -12,7 +12,7 @@ public interface BancoRepository extends CrudRepository<Banco,Long>{
 	
 	public Banco findByPorta(String porta);
 	
-	@Query("select count(*) from Banco s where s.desenvolvedor like ?1")
-	public int findByDev(@Param(":desenvolvedor") String desenvolvedor);
+	@Query("select count(*) from Banco s where s.porta like ?1")
+	public int findByContport(@Param(":porta") String porta);
 
 }

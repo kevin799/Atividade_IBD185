@@ -80,21 +80,19 @@ public class SpringDataJpaTest {
 	public void TestServiceBancoInclusaoConsultaBDDadosRepetidos(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
-		Banco ban = new Banco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR);
-		ban.setServidor(new ArrayList<Servidor>());
-		ban.getServidor().add(serivdor1);
+		Banco ban = new Banco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR,serivdor1);
+		ban.setServidor(serivdor1);
 		bancoService.incluiBancoClasse(ban);
 		//Impede que haja insercao de dados repetidos em um mesmo IP
-		assertFalse(bancoService.incluiBanco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR,IP));
+		assertFalse(bancoService.incluiBancoClasse(ban));
 	}
 	
 	@Test
 	public void TestRepositoryBancoConsultaBD(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
-		Banco ban = new Banco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR);
-		ban.setServidor(new ArrayList<Servidor>());
-		ban.getServidor().add(serivdor1);
+		Banco ban = new Banco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR,serivdor1);
+		ban.setServidor(serivdor1);
 		bancoService.incluiBancoClasse(ban);
 		assertEquals(bancRep.findByPorta(PORTA).getNome(),"SQL Server");
 	}

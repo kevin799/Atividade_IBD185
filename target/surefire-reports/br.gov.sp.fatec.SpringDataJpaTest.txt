@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.gov.sp.fatec.SpringDataJpaTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.018 s <<< FAILURE! - in br.gov.sp.fatec.SpringDataJpaTest
-test(br.gov.sp.fatec.SpringDataJpaTest)  Time elapsed: 0.002 s  <<< ERROR!
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'br.gov.sp.fatec.SpringDataJpaTest': Unsatisfied dependency expressed through field 'serv'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.gov.sp.fatec.model.Servidor' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.gov.sp.fatec.model.Servidor' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.417 s - in br.gov.sp.fatec.SpringDataJpaTest

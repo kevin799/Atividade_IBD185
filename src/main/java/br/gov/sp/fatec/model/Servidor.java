@@ -61,7 +61,7 @@ public class Servidor {
 	@Column(name = "SER_ESPACO")
 	private String espaco;
 	
-	@OneToMany(mappedBy = "servidor"/*, orphanRemoval = true*/)
+	@OneToMany(mappedBy = "servidor")
 	private List<Banco> bancosServidor = new ArrayList<Banco>();
 	
 	public Long getId() {

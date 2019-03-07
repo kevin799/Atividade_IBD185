@@ -1,7 +1,6 @@
 package br.gov.sp.fatec.model;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,12 +19,13 @@ public class Banco {
 		
 	}
 	
-	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor) {
+	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor,Servidor servidor) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.versao = versao;
 		this.porta = porta;
 		this.desenvolvedor = desenvolvedor;
+		this.servidor = servidor;
 	}
 	
 	@Id
@@ -49,12 +48,11 @@ public class Banco {
 	@Column(name = "BAN_DESENVOLVEDOR")
 	private String desenvolvedor;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "seb_servidor_banco",
-			joinColumns = { @JoinColumn(name = "SER_ID") },
-			inverseJoinColumns = { @JoinColumn(name = "BAN_ID" )}
-			)
-	private List<Servidor> servidor;
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "SER_ID") 
+			
+			
+	private Servidor servidor;
 			
 			
 
@@ -108,11 +106,11 @@ public class Banco {
 		this.desenvolvedor = desenvolvedor;
 	}
 
-	public List<Servidor> getServidor() {
+	public Servidor getServidor() {
 		return servidor;
 	}
 
-	public void setServidor(List<Servidor> servidor) {
+	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
 	}
 	

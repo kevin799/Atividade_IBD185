@@ -6,5 +6,4 @@ public interface ServidorService {
 	
 	public Servidor incluiServidor(Servidor servidor);
 	
-	
 }

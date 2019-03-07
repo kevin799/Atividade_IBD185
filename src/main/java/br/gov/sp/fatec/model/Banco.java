@@ -16,7 +16,6 @@ import javax.persistence.Table;
 public class Banco {
 	
 	public Banco(){
-		
 	}
 	
 	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor,Servidor servidor) {
@@ -71,8 +70,6 @@ public class Banco {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 
 	public String getTipo() {
 		return tipo;

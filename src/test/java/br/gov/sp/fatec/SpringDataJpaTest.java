@@ -2,8 +2,7 @@ package br.gov.sp.fatec;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
-import java.util.ArrayList;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,38 +54,39 @@ public class SpringDataJpaTest {
 	}
 	
 	
-
+	//Testando o service referente a Servidor, onde faz se a conparação do objeto retornado na inserção dentro de um banco.
 	@Test
 	public void TestServiceServidorInsertBD(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
 		servRep.save(serivdor1);
-		servidorService.incluiServidor(serivdor1);
-		System.out.println(servRep.findByQntip(IP));
-		assertEquals(servRep.findByQntip(IP),1);		
+		assertNotEquals(servidorService.incluiServidor(serivdor1),null);		
 	}
 	
+	//Teste do reoisitory do Sercidor, contemplando a busca de um servidor por IP.
 	@Test
-	public void TestServiceServidorCosnultaBD(){
+	public void TestRepositoryServidorCosnultaBD(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
 		servRep.save(serivdor1);
 		servidorService.incluiServidor(serivdor1);
-		
 		assertEquals(servRep.findByIp(IP).getMaquina(),MAQUINA);		
 	}
 	
+	//Testando o service referente a Banco, retorna um boolan, retornando um true caso contemple as condições de inserção.
 	@Test
 	public void TestServiceBancoInclusaoConsultaBDDadosRepetidos(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
 		Banco ban = new Banco(NOME_BANCO,TIPO,VERSAO,PORTA,DESENVOLVEDOR,serivdor1);
 		ban.setServidor(serivdor1);
+		//Objeto inserido.
 		bancoService.incluiBancoClasse(ban);
-		//Impede que haja insercao de dados repetidos em um mesmo IP
+		//Impede que haja insercao de dados repetidos em um mesma porta.
 		assertFalse(bancoService.incluiBancoClasse(ban));
 	}
 	
+	//Teste do reoisitory do Banco, contemplando a busca de um banco pela Porta.
 	@Test
 	public void TestRepositoryBancoConsultaBD(){
 		Servidor serivdor1 = new Servidor();

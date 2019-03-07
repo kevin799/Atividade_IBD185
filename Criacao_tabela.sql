@@ -17,8 +17,7 @@ create table ban_banco (
   ban_versao varchar(50) not null,
   ban_porta varchar(50) not null,
   ban_desenvolvedor varchar(50) not null,
-  ser_id bigint #,
-  #foreign key FK_SER_ID (ser_id)  references bnt_banco_tabela(ser_id)
+  ser_id bigint 
 );
 
 ALTER TABLE ban_banco ADD FOREIGN KEY FK_SERV_ID (ser_id) REFERENCES ser_servidor(ser_id);

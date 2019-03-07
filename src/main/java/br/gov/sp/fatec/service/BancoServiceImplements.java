@@ -17,22 +17,9 @@ public class BancoServiceImplements implements BancoService{
 	
 	@Autowired
 	public BancoRepository bancRep;	
-/*
-	@Override
-	@Transactional
-	public Boolean incluiBanco(String nome, String tipo, String versao, String porta, String desenvolvedor, String ip) {
-		Servidor serv = servRep.findByIp(ip);
-		Banco banco = bancRep.findByPorta(porta);
-		if((serv != null) && (banco == null)) {
-			banco = new Banco(nome, tipo,versao,porta,desenvolvedor);
-			bancRep.save(banco);
-			return true;
-		}
-		
-		return false;
-	}*/
 
 	@Override
+	@Transactional
 	public Boolean incluiBancoClasse(Banco banco) {
 		if(bancRep.findByContport(banco.getPorta())!=1) {
 			bancRep.save(banco);

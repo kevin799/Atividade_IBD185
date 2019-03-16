@@ -47,8 +47,9 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		Banco ban = new Banco("Oracle", "Developer", "2017", "8083", "Oracle",serv);
 		//ban.setServidor(new ArrayList<Servidor>());
 		//ban.getServidor().add(serv);
-		System.out.println("Encontrou========>"+ bancoService.incluiBancoClasse(ban));
+		//System.out.println("Encontrou========>"+ bancoService.incluiBancoClasse(ban));
 		////////////////////////////
+		System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));
 		//System.out.println("Encontrou========>"+bancRep.findByDev("Oracle"));
 		
 		//System.out.println("Encontrou========>"+bancRep.findByPorta("8081"));

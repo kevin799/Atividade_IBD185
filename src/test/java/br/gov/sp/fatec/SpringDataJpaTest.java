@@ -68,8 +68,8 @@ public class SpringDataJpaTest {
 	public void TestRepositoryServidorCosnultaBD(){
 		Servidor serivdor1 = new Servidor();
 		serivdor1.setServidor(IP, NOME, MAQUINA, PROCESSADOR, MEMORIA, ESPACO );
-		servRep.save(serivdor1);
-		servidorService.incluiServidor(serivdor1);
+		//servRep.save(serivdor1);
+		//servidorService.incluiServidor(serivdor1);
 		assertEquals(servRep.findByIp(IP).getMaquina(),MAQUINA);		
 	}
 	

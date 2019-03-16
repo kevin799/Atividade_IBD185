@@ -20,13 +20,13 @@ public class BancoServiceImplements implements BancoService{
 
 	@Override
 	@Transactional
-	public Boolean incluiBancoClasse(Banco banco) {
-		if(bancRep.findByContport(banco.getPorta())!=1) {
+	public Banco incluiBancoClasse(Banco banco) {
+		if((bancRep.findByContport(banco.getPorta())==0) && (servRep.findByQntip(banco.getServidor().getIp())==0)) {
 			bancRep.save(banco);
-			return true;
+			return banco;
 		}
 		else {
-			return false;
+			return null;
 		}
 	}
 

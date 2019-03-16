@@ -4,7 +4,7 @@ import br.gov.sp.fatec.model.Banco;
 
 public interface BancoService {
 	
-	public Boolean incluiBancoClasse(Banco banco);
+	public Banco incluiBancoClasse(Banco banco);
 	
 	
 

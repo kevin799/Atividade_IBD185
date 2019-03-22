@@ -1,7 +1,9 @@
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/ServidorRepository.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/BancoRepository.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Servidor.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoServiceImplements.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoService.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Banco.java
-/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/SpringDataJpaApplication.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Banco.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\repository\ServidorRepository.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Servidor.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\repository\BancoRepository.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\service\BancoServiceImplements.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\SpringDataJpaApplication.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\service\BancoService.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\controller\BancoController.java
+C:\GitHub\Atividade_IBD185\src\main\java\br\gov\sp\fatec\controller\ServidorController.java

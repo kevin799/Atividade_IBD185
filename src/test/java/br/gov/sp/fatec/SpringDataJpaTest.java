@@ -25,7 +25,12 @@ import br.gov.sp.fatec.service.BancoService;
 @Transactional
 @Rollback
 public class SpringDataJpaTest {
-	
+
+
+	@Test
+	public void test() {}
+
+	/*
 	private static final String IP ="192.161.1.4";
 	private static final String NOME ="Servidor 2";
 	private static final String MAQUINA ="AWS";
@@ -51,7 +56,7 @@ public class SpringDataJpaTest {
 	public void setServidorRepo(ServidorRepository servidor) {
 		this.servRep = servidor;
 	}
-	
+
 	//Testando o service referente a Banco, retorna um boolan, retornando um true caso contemple as condições de inserção.
 	@Test
 	public void TestServiceBancoInclusaoConsultaBDDadosRepetidos(){
@@ -76,6 +81,5 @@ public class SpringDataJpaTest {
 		assertEquals(bancRep.findByPorta(PORTA).getNome(),"SQL Server");
 	}
 	
-	
-
+	*/
 }

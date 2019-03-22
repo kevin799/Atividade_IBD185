@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.view.View;
+
 @Entity
 @Table(name ="SER_SERVIDOR")
 public class Servidor {
@@ -44,21 +48,27 @@ public class Servidor {
 	private Long id; 
 	
 	@Column(name = "SER_IP",unique=true, length = 50, nullable = false)
+	@JsonView({View.ServidorCompleto.class, View.ServidorIpNome.class})
 	private String ip;
 	
 	@Column(name = "SER_NOME")
+	@JsonView({View.ServidorCompleto.class, View.ServidorIpNome.class})
 	private String nome;
 	
 	@Column(name = "SER_MAQUINA")
+	@JsonView({View.ServidorCompleto.class})
 	private String maquina;
 	
 	@Column(name = "SER_PROCESSADOR")
+	@JsonView({View.ServidorCompleto.class, View.ServidorHardware.class})
 	private String processador;
 	
 	@Column(name = "SER_MEMORIA")
+	@JsonView({View.ServidorCompleto.class, View.ServidorHardware.class})
 	private int memoria;
 	
 	@Column(name = "SER_ESPACO")
+	@JsonView({View.ServidorCompleto.class, View.ServidorHardware.class})
 	private String espaco;
 	
 	@OneToMany(mappedBy = "servidor")

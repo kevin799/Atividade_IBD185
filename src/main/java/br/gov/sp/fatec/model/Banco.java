@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.view.View;
+
 @Entity
 @Table(name = "BAN_BANCO")
 public class Banco {
@@ -33,18 +37,23 @@ public class Banco {
 	private Long id;
 	
 	@Column(name = "BAN_NOME")
+	@JsonView({View.BancoNomeTipo.class})
 	private String nome;
 	
 	@Column(name = "BAN_TIPO")
+	@JsonView({View.BancoNomeTipo.class})
 	private String tipo;
 	
 	@Column(name = "BAN_VERSAO")
+	@JsonView({View.BancoCompleto.class})
 	private String versao;
 	
 	@Column(name = "BAN_PORTA")
+	@JsonView({View.BancoCompleto.class})
 	private String porta;
 	
 	@Column(name = "BAN_DESENVOLVEDOR")
+	@JsonView({View.BancoCompleto.class})
 	private String desenvolvedor;
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)

@@ -21,7 +21,7 @@ public class View {
 	public static class BancoCompleto extends BancoNomeTipo{
 		//TRAZER TODOS OS ATRIBUTOS DE BANCO
 	}
-	
-	
+
+
 
 }

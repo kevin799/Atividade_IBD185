@@ -6,6 +6,4 @@ public interface BancoService {
 	
 	public Banco incluiBancoClasse(Banco banco);
 	
-	
-
 }

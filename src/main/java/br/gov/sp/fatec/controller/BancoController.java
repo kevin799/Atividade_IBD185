@@ -39,4 +39,14 @@ public class BancoController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND):
                 new ResponseEntity<>(banco, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/findByID")
+    @JsonView(View.BancoNomeTipo.class)
+    public ResponseEntity<Banco> findByID(@RequestParam(value="id") Integer id) {
+        Banco banco = bancoRepo.findByID(id);
+        return banco == null ?
+                new ResponseEntity<>(HttpStatus.NOT_FOUND):
+                new ResponseEntity<>(banco, HttpStatus.OK);
+    }
+    
 }

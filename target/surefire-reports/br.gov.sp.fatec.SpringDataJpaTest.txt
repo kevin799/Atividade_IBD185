@@ -1,14 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.gov.sp.fatec.SpringDataJpaTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 14.252 s <<< FAILURE! - in br.gov.sp.fatec.SpringDataJpaTest
-test(br.gov.sp.fatec.SpringDataJpaTest)  Time elapsed: 0.532 s  <<< ERROR!
-java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker
-Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/dynamic/loading/ClassLoadingStrategy
-Caused by: java.lang.ClassNotFoundException: net.bytebuddy.dynamic.loading.ClassLoadingStrategy
-
-test(br.gov.sp.fatec.SpringDataJpaTest)  Time elapsed: 0.534 s  <<< ERROR!
-java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker
-Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/dynamic/loading/ClassLoadingStrategy
-Caused by: java.lang.ClassNotFoundException: net.bytebuddy.dynamic.loading.ClassLoadingStrategy
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.502 s - in br.gov.sp.fatec.SpringDataJpaTest

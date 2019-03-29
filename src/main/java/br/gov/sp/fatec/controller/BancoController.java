@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,13 +24,16 @@ public class BancoController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @JsonView(View.BancoCompleto.class)
-    public Banco save(@RequestBody Banco banco, HttpServletRequest req, HttpServletResponse res) {
+    public ResponseEntity<Banco> save(@RequestBody Banco banco, HttpServletRequest req, HttpServletResponse res) {
         banco = bancoRepo.save(banco);
+      
         res.addHeader(
                 "Location",
                 req.getServerName()+":"+req.getServerPort() +
                 req.getContextPath()+"/banco/getById?id="+banco.getId());
-        return banco;
+        return banco == null ?
+        		new ResponseEntity<>(HttpStatus.NOT_FOUND):
+                new ResponseEntity<>(banco, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/findByName")
@@ -42,11 +47,11 @@ public class BancoController {
     
     @RequestMapping(value = "/findByID")
     @JsonView(View.BancoNomeTipo.class)
-    public ResponseEntity<Banco> findByID(@RequestParam(value="id") Integer id) {
-        Banco banco = bancoRepo.findByID(id);
-        return banco == null ?
-                new ResponseEntity<>(HttpStatus.NOT_FOUND):
-                new ResponseEntity<>(banco, HttpStatus.OK);
+    public ResponseEntity<Banco> findByID(@RequestParam(value="id") Long id) {
+        Optional<Banco> banco = bancoRepo.findById(id);
+        return banco.isPresent() ?
+        		new ResponseEntity<Banco>(banco.get(), HttpStatus.OK):
+                new ResponseEntity<Banco>(HttpStatus.NOT_FOUND);
     }
     
 }

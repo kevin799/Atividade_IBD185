@@ -20,7 +20,10 @@ public class ServidorController {
 	@RequestMapping(value ="/getByIp")
 	//@JsonView(View.All.Class)
 	public ResponseEntity<Servidor> get(@RequestParam(value="ip", defaultValue="1") String ip){
+		System.out.println(ip);
 		Servidor servidor = servidorRepo.findByIp(ip);
+		
+		System.out.println(servidor.getNome());
 		
 		if(servidor == null) {
 			return new	ResponseEntity<Servidor>(HttpStatus.NOT_FOUND);

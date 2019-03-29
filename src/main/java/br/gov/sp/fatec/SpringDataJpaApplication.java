@@ -42,6 +42,7 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		//ban.setServidor(new ArrayList<Servidor>());
 		//ban.getServidor().add(serv);
 		System.out.println("Encontrou========>"+ bancoService.incluiBancoClasse(ban));
+		System.out.println(servRep.findByMaquinaContainsIgnoreCaseOrNomeContainsIgnoreCase("AWS","Servidor 3"));
 		////////////////////////////
 		//System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));
 		//System.out.println("Encontrou========>"+bancRep.findByDev("Oracle"));

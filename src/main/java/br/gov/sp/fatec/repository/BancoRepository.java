@@ -14,6 +14,7 @@ public interface BancoRepository extends CrudRepository<Banco,Long>{
 	
 	//public Banco findById(Long id);
 	
+	
 	@Query("select count(s.porta) from Banco s where s.porta = :porta")
 	public int findByContport(@Param("porta") String porta);
 

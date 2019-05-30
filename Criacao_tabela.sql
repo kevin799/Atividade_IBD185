@@ -8,7 +8,7 @@ create table ser_servidor (
   ser_processador varchar(50) not null,
   ser_memoria int not null,
   ser_espaco varchar(50) not null,
-  ser_id int
+  ser_status int
 );
 
 create table ban_banco (
@@ -23,4 +23,3 @@ create table ban_banco (
 );
 
 ALTER TABLE ban_banco ADD FOREIGN KEY FK_SERV_ID (ser_id) REFERENCES ser_servidor(ser_id);
-

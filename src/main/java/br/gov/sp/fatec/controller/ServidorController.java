@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.repository.ServidorRepository;
+import br.gov.sp.fatec.view.View;
 
 @RestController
 @RequestMapping	(value="/servidor")
@@ -23,6 +26,7 @@ public class ServidorController {
 	private ServidorRepository servidorRepo;
 	
 	@RequestMapping(value = "/getServidorMaqServ")
+	@JsonView(View.ServidorHardware.class)
 	public ResponseEntity<List<Servidor>> getServidorMaqServ(@RequestParam(value="maquina") String maquina, @RequestParam(value="servidor") String servidor){
 		
 		List<Servidor> listaServ = servidorRepo.findByMaquinaContainsIgnoreCaseOrNomeContainsIgnoreCase(maquina, servidor);
@@ -36,7 +40,7 @@ public class ServidorController {
 	
 	
 	@RequestMapping(value ="/getByIp")
-	//@JsonView(View.All.Class)
+	@JsonView(View.ServidorCompleto.class)
 	public ResponseEntity<Servidor> get(@RequestParam(value="ip", defaultValue="1") String ip){
 		System.out.println(ip);
 		Servidor servidor = servidorRepo.findByIp(ip);

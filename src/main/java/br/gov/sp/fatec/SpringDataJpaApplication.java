@@ -35,10 +35,10 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		/////////////////////////////
 		//System.out.println("Encontrou========>");
 		//System.out.println(servRep.findByQntip("192.161.1.2"));
-		serv = new Servidor("192.161.1.10", "Servidor 2", "AWS", "i7", 8, "1Tb");
+		serv = new Servidor("192.161.1.10", "Servidor 2", "AWS", "i7", 8, "1Tb",1);
 		//servidorService.incluiServidor(serv);
 		//System.out.println("Encontrou========>"+ bancoService.incluiBanco("SQL Server", "Developer", "2017", "8082", "Microsoft","192.161.1.1"));
-		Banco ban = new Banco("Oracle", "Developer", "2017", "8085", "Oracle",serv);
+		Banco ban = new Banco("Oracle", "Developer", "2017", "8085", "Oracle",serv,1);
 		//ban.setServidor(new ArrayList<Servidor>());
 		//ban.getServidor().add(serv);
 		System.out.println("Encontrou========>"+ bancoService.incluiBancoClasse(ban));

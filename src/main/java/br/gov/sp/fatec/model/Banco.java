@@ -22,13 +22,14 @@ public class Banco {
 	public Banco(){
 	}
 	
-	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor,Servidor servidor) {
+	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor,Servidor servidor,Integer status) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.versao = versao;
 		this.porta = porta;
 		this.desenvolvedor = desenvolvedor;
 		this.servidor = servidor;
+		this.status = status;
 	}
 	
 	@Id
@@ -55,6 +56,11 @@ public class Banco {
 	@Column(name = "BAN_DESENVOLVEDOR")
 	@JsonView({View.BancoCompleto.class})
 	private String desenvolvedor;
+	
+	@Column(name = "BAN_STATUS")
+	@JsonView({View.BancoCompleto.class})
+	private Integer status;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "SER_ID") 
@@ -110,6 +116,14 @@ public class Banco {
 
 	public void setDesenvolvedor(String desenvolvedor) {
 		this.desenvolvedor = desenvolvedor;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Servidor getServidor() {

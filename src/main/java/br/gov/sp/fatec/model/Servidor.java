@@ -23,22 +23,24 @@ public class Servidor {
 		
 	}
 	
-	public Servidor(String ip, String nome, String maquina,String processador,int memoria,String espaco){
+	public Servidor(String ip, String nome, String maquina,String processador,int memoria,String espaco,Integer status){
 		this.ip = ip;
 		this.nome = nome;
 		this.maquina = maquina;
 		this.processador = processador;
 		this.memoria = memoria;
 		this.espaco = espaco;
+		this.status = status;
 	}
 	
-	public void setServidor(String ip, String nome, String maquina,String processador,int memoria,String espaco) {
+	public void setServidor(String ip, String nome, String maquina,String processador,int memoria,String espaco,Integer status) {
 		this.ip = ip;
 		this.nome = nome;
 		this.maquina = maquina;
 		this.processador = processador;
 		this.memoria = memoria;
 		this.espaco = espaco;
+		this.status = status;
 	}
 	
 	
@@ -70,6 +72,10 @@ public class Servidor {
 	@Column(name = "SER_ESPACO")
 	@JsonView({View.ServidorCompleto.class, View.ServidorHardware.class})
 	private String espaco;
+	
+	@Column(name = "SER_STATUS")
+	@JsonView({View.ServidorCompleto.class, View.ServidorHardware.class})
+	private Integer status;
 	
 	@OneToMany(mappedBy = "servidor")
 	private List<Banco> bancosServidor = new ArrayList<Banco>();
@@ -105,6 +111,14 @@ public class Servidor {
 
 	public void setMaquina(String maquina) {
 		this.maquina = maquina;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 	

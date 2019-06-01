@@ -22,7 +22,7 @@ public class Banco {
 	public Banco(){
 	}
 	
-	public Banco(String nome,String tipo,String versao,String porta,String desenvolvedor,Servidor servidor,Integer status) {
+	public Banco(String nome,String tipo,String versao,Integer porta,String desenvolvedor,Servidor servidor,Integer status) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.versao = versao;
@@ -51,7 +51,7 @@ public class Banco {
 	
 	@Column(name = "BAN_PORTA")
 	@JsonView({View.BancoCompleto.class})
-	private String porta;
+	private int porta;
 	
 	@Column(name = "BAN_DESENVOLVEDOR")
 	@JsonView({View.BancoCompleto.class})
@@ -102,11 +102,11 @@ public class Banco {
 		this.versao = versao;
 	}
 
-	public String getPorta() {
+	public Integer getPorta() {
 		return porta;
 	}
 
-	public void setPorta(String porta) {
+	public void setPorta(Integer porta) {
 		this.porta = porta;
 	}
 

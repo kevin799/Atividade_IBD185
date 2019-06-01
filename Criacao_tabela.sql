@@ -16,7 +16,7 @@ create table ban_banco (
   ban_nome varchar(50) not null,
   ban_tipo varchar(50) not null,
   ban_versao varchar(50) not null,
-  ban_porta varchar(50) not null,
+  ban_porta int not null,
   ban_desenvolvedor varchar(50) not null,
   ser_id bigint,
   ban_status int

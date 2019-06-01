@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="banco">
     <div class="title">
       <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between ">
         <div></div>
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="cont-info conrtainer col-8 mx-auto">
+        <div class="cont-info conrtainer col-8 mx-auto pt-2">
             <div class="title subtitle d-flex justify-content-center mt-3">
                 <h3 >Configuration Server</h3>
             
@@ -128,7 +128,7 @@ export default {
 
         teste(){
             document.getElementById('add-bd').style.display = 'block'
-            const text = document.getElementById('add-title').innerHTML = 'Alter BD'
+            document.getElementById('add-title').innerHTML = 'Alter BD'
         }
     }
 
@@ -154,6 +154,11 @@ export default {
   font-family: 'Open Sans', sans-serif;
   
 }
+.banco{
+    background: rgb(150, 149, 149);
+    height: 100vh;
+    width: 100vw;
+}
 .add-bd{
   display: none;
   margin-top: 16px;
@@ -162,7 +167,7 @@ export default {
   height: 62%;
   width: 35%;
   color: #fff;
-  background: #8a8e92;
+  background: #e0e4e9;;
   z-index: 1000;
 }
 .bds:hover{
@@ -192,6 +197,8 @@ export default {
 
 .cont-info {
     background: #8a8e92;
+    
+
 }
 
 

@@ -58,7 +58,6 @@
             <thead class="thead bg-dark text-light">
                 <tr>
                     <th class="text-center border-right">Name</th>
-                    <th class="text-center border-right">Port</th>
                     <th class="text-center border-right">IP</th>
                     <th class="text-center border-right ">Status</th>
                 </tr>
@@ -66,7 +65,6 @@
             <tbody class="tbody">
                 <tr class="servs" >
                     <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
-                    <th class="text-center"> 8081</th>
                     <th class="text-center"> 192.168.1.2</th>
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
                 </tr>
@@ -122,7 +120,7 @@ export default {
         openInfoServ(){
             const divs = document.getElementById('servs')
             divs.addEventListener("click", () => {
-                window.open('http://www.google.com.br');
+                window.open('./banco');
             })   
 
         }
@@ -136,6 +134,11 @@ export default {
 </script>
 
 <style>
+.home{
+    background: rgb(150, 149, 149);
+    height: 100vh;
+    width: 100vw;
+}
     .thead{
         font-family: roboto;
     }
@@ -158,7 +161,7 @@ export default {
   height: 62%;
   width: 35%;
   color: #fff;
-  background: #8a8e92;
+  background: #e0e4e9;
   z-index: 1000;
 }
 

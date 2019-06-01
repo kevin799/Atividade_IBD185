@@ -13,6 +13,11 @@ const router = new Router({
       name: 'home',
       component: Home
     },
+    // {
+    //   path: '/banco',
+    //   name: '/banco',
+    //   component: Banco
+    // }
   
   ]
 })

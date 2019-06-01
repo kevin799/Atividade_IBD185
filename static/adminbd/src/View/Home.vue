@@ -12,6 +12,37 @@
   
 
     <div class="container">
+        <div class="add-serve" id="add-serve">
+            <h1 class="title"><p>Adicionar</p></h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+            </div>
+      
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1">
+                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01">
+                    <option selected>Machine</option>
+                    <option value="1">AWS</option>
+                    <option value="2">Digital Ocean</option>
+                    <option value="3">Red Hat</option>
+                </select>  
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Processor" aria-label="Processor" aria-describedby="basic-addon1">
+            </div>
+      
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Memory" aria-label="Memory" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Space" aria-label="Space" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-success btn-lg" v-on:click="noneElemento">Include</button>
+            </div>
+        </div>
+
+
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
                 <input type="text" class=" mt-3 form-control" placeholder="Search Server">
@@ -33,12 +64,17 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-            
-                <tr>
-                    <th class="text-center"> teste</th>
-                    <th class="text-center"> teste</th>
-                    <th class="text-center"> teste</th>
-                    <th class=" text-center"> <button type="button" class="btn btn-outline-info" >Info</button></th>
+                <tr id="servs"  class="servs" v-on:click="openInfoServ">
+                    <th class="text-center"> sla</th>
+                    <th class="text-center"> 8081</th>
+                    <th class="text-center"> 192.168.1.2</th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
+                </tr>
+                <tr id="servs"  class="servs" v-on:click="openInfoServ">
+                    <th class="text-center"> sla</th>
+                    <th class="text-center"> 8081</th>
+                    <th class="text-center"> 192.168.1.2</th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
                 </tr>
             </tbody>
             <tfoot>
@@ -46,9 +82,64 @@
             </tfoot>
         </table>
     </div>
+
   </div>
 </template>
 
+
+<script>
+export default {
+    mounted(){
+        this.habiServiButton()
+        this.openInfoServ()
+    },
+    methods:{
+        blockElemento(){
+  
+            document.getElementById('add-serve').style.display = 'block'
+
+
+        },
+        noneElemento(){
+        
+            document.getElementById('add-serve').style.display = 'none'
+         
+        },
+      
+    
+        habiServiButton(){
+            const btn = document.getElementById("btn-status");
+            if (btn.innerHTML == '√'){
+                btn.addEventListener("click", () => {
+                btn.style.backgroundColor = "red"
+                btn.innerHTML = 'X'
+                
+            
+                })
+            }
+             if (btn.innerHTML == 'X'){
+                btn.addEventListener("click", () => {
+                btn.style.backgroundColor = "green"
+                btn.innerHTML = '√'
+                })     
+            }  
+        },
+
+        openInfoServ(){
+            const divs = document.getElementById('servs')
+            divs.addEventListener("click", () => {
+                window.open('http://www.google.com.br');
+            })   
+
+        }
+    }
+
+
+    
+   
+    
+}
+</script>
 
 <style>
     .thead{
@@ -61,5 +152,42 @@
     .tbody{
         background: #d0d5db;
     }
+*{
+  font-family: 'Open Sans', sans-serif;
+  
+}
+.add-serve{
+  display: none;
+  margin-top: 16px;
+  margin-left: 20%;
+  position: absolute;
+  height: 62%;
+  width: 35%;
+  color: #fff;
+  background: #8a8e92;
+  z-index: 1000;
+}
+.servs:hover{
+    background: #656769;;
+    transition: .5s;
+}
+.add-serve p{
+  color: white;
+  display: flex;
+  padding: 2px;
+  justify-content: center;
+
+}
+.form-control{
+  margin: 10px;
+}
+
+.btn .btn-primary .btn-lg{
+  background-color: #fff;
+}
+
+.title{
+    background: rgb(39, 43, 48);
+}
   
 </style>

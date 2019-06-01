@@ -3,6 +3,7 @@ br\gov\sp\fatec\model\Servidor.class
 br\gov\sp\fatec\repository\BancoRepository.class
 br\gov\sp\fatec\view\View$ServidorHardware.class
 br\gov\sp\fatec\view\View$ServidorIpNome.class
+br\gov\sp\fatec\security\SecurityConfiguration.class
 br\gov\sp\fatec\view\View$ServidorCompleto.class
 br\gov\sp\fatec\view\View$BancoCompleto.class
 br\gov\sp\fatec\service\BancoServiceImplements.class

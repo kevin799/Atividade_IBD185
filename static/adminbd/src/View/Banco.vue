@@ -15,20 +15,20 @@
         <div class="add-bd border border-dark" id="add-bd">
             <h1 class="title" id='add-title'><p>Adicionar</p></h1>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="name">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Type" aria-label="Type" aria-describedby="basic-addon1">  
-                <input type="text" class="form-control" placeholder="Version" aria-label="Version" aria-describedby="basic-addon1">  
+                <input type="text" class="form-control" placeholder="Type" aria-label="Type" aria-describedby="basic-addon1" v-model="type">  
+                <input type="text" class="form-control" placeholder="Version" aria-label="Version" aria-describedby="basic-addon1" v-model="version">  
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1" v-model="port">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Developer" aria-label="Developer" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Developer" aria-label="Developer" aria-describedby="basic-addon1" v-model="developer">
                 <select class="custom-select mt-2 mr-3" id="inputGroupSelect01">
                     <option selected>ON</option>
                     <option value="1">OFF</option>
@@ -81,15 +81,16 @@
                 <tr>
                     <th class="text-center border-right">Name</th>
                     <th class="text-center border-right">Port</th>
-                    <th class="text-center border-right">IP</th>
+                    <th class="text-center border-right">Developer</th>
                     <th class="text-center border-right ">Option</th>
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr id="bds">
-                    <th class="text-center"> sla</th>
-                    <th class="text-center"> 8081</th>
-                    <th class="text-center"> 192.168.1.2</th>
+                <tr id="bds" v-for="teste in testes" :key="teste.name">
+
+                    <th class="text-center"> {{teste.name}}</th>
+                    <th class="text-center"> {{teste.port}}</th>
+                    <th class="text-center"> {{teste.developer}}</th>
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="teste()">Info</button>
                      <button type="button" class="btn btn-danger" id="btn-status" v-on:click="teste()">Del</button>
                      </th>
@@ -107,7 +108,18 @@
 
 <script>
 export default {
+    data(){
+        return{
+            name:'',
+            port: 0,
+            developer:'',
+            testes:[{'name':'nome1','port':1020, 'developer':'192...'},
+            {'name':'nome2','port':1010, 'developer':'192...'},
+            {'name':'nome3','port':1025, 'developer':'192...'},
+            {'name':'nome4','port':1026, 'developer':'192...'} ]
+        }
 
+    },
     mounted(){
         this.habiServiButton()
         this.openInfoServ()
@@ -120,7 +132,12 @@ export default {
 
         },
         noneElemento(){
-        
+            this.testes.push({
+                'name': this.name,
+                'port': this.port,
+                'developer': this.developer
+
+            })
             document.getElementById('add-bd').style.display = 'none'
          
         },

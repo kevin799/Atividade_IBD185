@@ -12,29 +12,28 @@
   
 
     <div class="container"> 
-        <div class="add-bd" id="add-bd">
+        <div class="add-bd border border-dark" id="add-bd">
             <h1 class="title" id='add-title'><p>Adicionar</p></h1>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1">
-                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01">
-                    <option selected>Machine</option>
-                    <option value="1">AWS</option>
-                    <option value="2">Digital Ocean</option>
-                    <option value="3">Red Hat</option>
-                </select>  
+                <input type="text" class="form-control" placeholder="Type" aria-label="Type" aria-describedby="basic-addon1">  
+                <input type="text" class="form-control" placeholder="Version" aria-label="Version" aria-describedby="basic-addon1">  
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Processor" aria-label="Processor" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Memory" aria-label="Memory" aria-describedby="basic-addon1">
-                <input type="text" class="form-control" placeholder="Space" aria-label="Space" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Developer" aria-label="Developer" aria-describedby="basic-addon1">
+                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01">
+                    <option selected>ON</option>
+                    <option value="1">OFF</option>
+                </select>  
+                
             </div>
 
             <div class="d-flex justify-content-center">
@@ -161,7 +160,7 @@ export default {
 }
 .add-bd{
   display: none;
-  margin-top: 16px;
+  margin-top: 19%;
   margin-left: 20%;
   position: absolute;
   height: 62%;

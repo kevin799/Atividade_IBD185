@@ -12,7 +12,7 @@
   
 
     <div class="container">
-        <div class="add-serve" id="add-serve">
+        <div class="add-serve border border-dark" id="add-serve">
             <h1 class="title"><p>Adicionar</p></h1>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">

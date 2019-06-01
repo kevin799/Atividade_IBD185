@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <div class="title">
-      <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between">
+      <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between ">
         <div></div>
-        <h1>Servers</h1>
+        <h1 class="mt-3">Database</h1>
         <div>
              
         </div>
@@ -42,6 +42,29 @@
             </div>
         </div>
 
+        <div class="cont-info conrtainer col-8 mx-auto">
+            <div class="title subtitle d-flex justify-content-center mt-3">
+                <h3 >Configuration Server</h3>
+            
+            </div>
+            <div class="info-serve">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1">
+                    
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Machine" aria-label="Ip" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Processor" aria-label="Ip" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3 pb-3 pr-5">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary mt-2 " type="button" id="button-addon2">Alter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
@@ -51,7 +74,7 @@
                 </div>
             </div>
             <div style="width: 100px">
-                <button type="button" class="btn-plus btn btn-info w-100 mt-3" v-on:click="blockElemento">+</button>
+                <button type="button" class="btn-plus btn btn-info w-100 mt-3" v-on:click="blockElemento">+ BD</button>
             </div>
         </div>    
         <table class="table">
@@ -64,8 +87,14 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr class="servs" >
-                    <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
+                <tr id="servs"  class="servs" v-on:click="openInfoServ">
+                    <th class="text-center"> sla</th>
+                    <th class="text-center"> 8081</th>
+                    <th class="text-center"> 192.168.1.2</th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
+                </tr>
+                <tr id="servs"  class="servs" v-on:click="openInfoServ">
+                    <th class="text-center"> sla</th>
                     <th class="text-center"> 8081</th>
                     <th class="text-center"> 192.168.1.2</th>
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
@@ -83,6 +112,7 @@
 
 <script>
 export default {
+
     mounted(){
         this.habiServiButton()
         this.openInfoServ()
@@ -161,10 +191,6 @@ export default {
   background: #8a8e92;
   z-index: 1000;
 }
-
-.servs{
-    transition: .5s;
-}
 .servs:hover{
     background: #656769;;
     transition: .5s;
@@ -185,7 +211,14 @@ export default {
 }
 
 .title{
-    background: rgb(39, 43, 48);
+    background: #8a8e92;
+     width: 100%;
+    color:white;
 }
-  
+
+.cont-info {
+    background: #8a8e92;
+}
+
+
 </style>

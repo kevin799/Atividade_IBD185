@@ -3,7 +3,7 @@
     <div class="title">
       <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between ">
         <div></div>
-        <h1 class="mt-3">Database</h1>
+        <h1 class="mt-1">Database</h1>
         <div>
              
         </div>
@@ -11,9 +11,9 @@
     </div>
   
 
-    <div class="container">
-        <div class="add-serve" id="add-serve">
-            <h1 class="title"><p>Adicionar</p></h1>
+    <div class="container"> 
+        <div class="add-bd" id="add-bd">
+            <h1 class="title" id='add-title'><p>Adicionar</p></h1>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
             </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-lg" v-on:click="noneElemento">Include</button>
+                <button type="button" class="btn btn-success btn-lg" v-on:click="noneElemento">Save</button>
             </div>
         </div>
 
@@ -83,21 +83,17 @@
                     <th class="text-center border-right">Name</th>
                     <th class="text-center border-right">Port</th>
                     <th class="text-center border-right">IP</th>
-                    <th class="text-center border-right ">Status</th>
+                    <th class="text-center border-right ">Option</th>
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr id="servs"  class="servs" v-on:click="openInfoServ">
+                <tr id="bds">
                     <th class="text-center"> sla</th>
                     <th class="text-center"> 8081</th>
                     <th class="text-center"> 192.168.1.2</th>
-                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
-                </tr>
-                <tr id="servs"  class="servs" v-on:click="openInfoServ">
-                    <th class="text-center"> sla</th>
-                    <th class="text-center"> 8081</th>
-                    <th class="text-center"> 192.168.1.2</th>
-                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="teste()">Info</button>
+                     <button type="button" class="btn btn-danger" id="btn-status" v-on:click="teste()">Del</button>
+                     </th>
                 </tr>
             </tbody>
             <tfoot>
@@ -120,41 +116,19 @@ export default {
     methods:{
         blockElemento(){
   
-            document.getElementById('add-serve').style.display = 'block'
+            document.getElementById('add-bd').style.display = 'block'
 
 
         },
         noneElemento(){
         
-            document.getElementById('add-serve').style.display = 'none'
+            document.getElementById('add-bd').style.display = 'none'
          
         },
-      
-    
-        habiServiButton(){
-            const btn = document.getElementById("btn-status");
-            if (btn.innerHTML == '√'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "red"
-                btn.innerHTML = 'X'
-                
-            
-                })
-            }
-             if (btn.innerHTML == 'X'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "green"
-                btn.innerHTML = '√'
-                })     
-            }  
-        },
 
-        openInfoServ(){
-            const divs = document.getElementById('servs')
-            divs.addEventListener("click", () => {
-                window.open('http://www.google.com.br');
-            })   
-
+        teste(){
+            document.getElementById('add-bd').style.display = 'block'
+            const text = document.getElementById('add-title').innerHTML = 'Alter BD'
         }
     }
 
@@ -180,7 +154,7 @@ export default {
   font-family: 'Open Sans', sans-serif;
   
 }
-.add-serve{
+.add-bd{
   display: none;
   margin-top: 16px;
   margin-left: 20%;
@@ -191,11 +165,11 @@ export default {
   background: #8a8e92;
   z-index: 1000;
 }
-.servs:hover{
+.bds:hover{
     background: #656769;;
     transition: .5s;
 }
-.add-serve p{
+.add-bd p{
   color: white;
   display: flex;
   padding: 2px;

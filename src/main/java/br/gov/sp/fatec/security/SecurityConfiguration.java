@@ -28,7 +28,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			
 			.withUser("dan").password(
 					passwordEncoder().encode("dan123")) //passwordEncoder criado na classe para cripografar a senha
-					.roles("USER");
+					.roles("USER")
+		
+			.and()
+			
+			
+			.withUser("manager").password(
+					passwordEncoder().encode("manager123")) //passwordEncoder criado na classe para cripografar a senha
+					.roles("MANAGER");
 		
 		
 	}
@@ -37,7 +44,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests() //Autorizando requests de qualquer origem
-			.anyRequest().authenticated() //Autorizar acesso somente para acesso autenticado
+			//.anyRequest().authenticated() //Autorizar acesso somente para acesso autenticado
+			.antMatchers("/login.html").authenticated() //.permitAll() //Aceita acesso de qualquer usuario
+			.antMatchers("/home.html").authenticated() //Usuario reve estar autenticado para acessar esta pagina
+			.antMatchers("/admin/index").hasRole("ADMIN")
+			.antMatchers("/managment/index").hasAnyRole("ADMIN","MANAGER")
 			.and()
 			.httpBasic();// Autorizacoes atraves de HTTP basico
 	}

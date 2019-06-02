@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(value="/banco")
+@CrossOrigin
 public class BancoController {
     
     @Autowired

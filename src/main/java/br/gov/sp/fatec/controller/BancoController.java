@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,11 @@ public class BancoController {
 
     @RequestMapping(value = "/findByName")
     @JsonView(View.BancoCompleto.class)
-    public ResponseEntity<Banco> findByName(@RequestParam(value="name") String name) {
-        Banco banco = bancoRepo.findByNome(name);
+    public ResponseEntity<List<Banco>> findByName(@RequestParam(value="name") String name) {
+        List<Banco> banco = bancoRepo.findByNome(name);
         return banco == null ?
-                new ResponseEntity<>(HttpStatus.NOT_FOUND):
-                new ResponseEntity<>(banco, HttpStatus.OK);
+                new ResponseEntity<List<Banco>>(HttpStatus.NOT_FOUND):
+                new ResponseEntity<List<Banco>>(banco, HttpStatus.OK);
     }
     
     @RequestMapping(value = "/findByID")

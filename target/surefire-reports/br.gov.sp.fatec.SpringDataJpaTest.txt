@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: br.gov.sp.fatec.SpringDataJpaTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.516 s - in br.gov.sp.fatec.SpringDataJpaTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.335 s - in br.gov.sp.fatec.SpringDataJpaTest
+>>>>>>> 564c61240087563c02e0a7aac9e1388181218235

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,5 +54,16 @@ public class ServidorController {
 		return new	ResponseEntity<Servidor>(servidor, HttpStatus.OK);
 
 	}
+	@RequestMapping(value = "/getServip", method = RequestMethod.GET)
+	@JsonView(View.Anotacao.class)
+	public  ResponseEntity<List<String>> getServip(){
+		List<String> listaIp = servidorRepo.findBySerip();
+		if(listaIp == null) {
+			return new ResponseEntity<List<String>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<String>>(listaIp,HttpStatus.OK);
+	}
+	
+	
 
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\service\BancoServiceImplements.java
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\view\View.java
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Servidor.java
@@ -8,3 +9,38 @@ C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\sr
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\repository\ServidorRepository.java
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Banco.java
 C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\controller\BancoController.java
+=======
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/LoginController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoServiceImplements.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoService.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/AnotacaoRepository.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/BancoController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/UsuarioServiceImpl.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/security/RestAuthenticationEntryPoint.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/security/Login.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/AnotacaoController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AnotacaoServiceImpl.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Usuario.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/view/View.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/security/JwtUtils.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/SpringDataJpaApplication.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/UsuarioRepository.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/AutorizacaoRepository.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/security/SecurityConfiguration.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Anotacao.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/security/JwtAuthenticationFilter.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/AutorizacaoController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AnotacaoService.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/SegurancaServiceImpl.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Servidor.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/HomeController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AutorizacaoServiceImpl.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/UsuarioController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Autorizacao.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/ServidorRepository.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/repository/BancoRepository.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/ServidorController.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Banco.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/UsuarioService.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AutorizacaoService.java
+>>>>>>> 564c61240087563c02e0a7aac9e1388181218235

@@ -10,7 +10,7 @@ import br.gov.sp.fatec.model.Banco;
 
 public interface BancoRepository extends CrudRepository<Banco,Long>{
 	
-	public Banco findByNome(String nome);
+	public List<Banco> findByNome(String nome);
 	
 	public Banco findByPorta(Integer porta);
 	

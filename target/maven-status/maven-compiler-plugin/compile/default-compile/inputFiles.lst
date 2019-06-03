@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\service\BancoServiceImplements.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\view\View.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Servidor.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\service\BancoService.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\controller\ServidorController.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\repository\BancoRepository.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\SpringDataJpaApplication.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\repository\ServidorRepository.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\model\Banco.java
-C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\src\main\java\br\gov\sp\fatec\controller\BancoController.java
-=======
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/LoginController.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoServiceImplements.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/BancoService.java
@@ -43,4 +31,3 @@ C:\Users\Jonathan\Desktop\fatec\mineda\controleServidorBanco\Atividade_IBD185\sr
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Banco.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/UsuarioService.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AutorizacaoService.java
->>>>>>> 564c61240087563c02e0a7aac9e1388181218235

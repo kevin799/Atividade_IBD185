@@ -15,11 +15,6 @@ public interface ServidorPrincipalRepository extends CrudRepository<ServidorPrin
 	
 	@Query(value="select * from ser_servidor_principal", nativeQuery = true)
 	public List<ServidorPrincipal> findTudo();
-	/*
-	@Query(value="update ser_servidor_principal set ser_status = 1 where ser_ip = :ip ", nativeQuery = true)
-	public void ligaServidor(@Param("ip") String ip);
 	
-	@Query(value="update banco.ser_servidor_principal set ser_status = 0 where ser_ip = :ip ", nativeQuery = true)
-	public void deslogaServidor(@Param("ip") String ip);
-	*/
+	
 }

@@ -33,6 +33,7 @@ public class ServidorPrincipalController {
 	private ServidorPrincipalRepository serRepos;
 	
 	
+	
 	@CrossOrigin
 	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	@JsonView(View.ServidorPrincipal.class)
@@ -68,6 +69,27 @@ public class ServidorPrincipalController {
 		
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/ligaServidor")
+	public ResponseEntity<ServidorPrincipal>ligar(@RequestParam(value="ip",defaultValue="1") String ip){
+		ServidorPrincipal servidor = (ServidorPrincipal) serR.ligarServidor(ip);
+		if(servidor == null) {
+			return new ResponseEntity<ServidorPrincipal>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<ServidorPrincipal>(servidor,HttpStatus.OK);
+		
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/desligaServidor")
+	public ResponseEntity<ServidorPrincipal>desliga(@RequestParam(value="ip",defaultValue="1") String ip){
+		ServidorPrincipal servidor = (ServidorPrincipal) serR.desligaServidor(ip);
+		if(servidor == null) {
+			return new ResponseEntity<ServidorPrincipal>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<ServidorPrincipal>(servidor,HttpStatus.OK);
+		
+	}
 	
 	/*@RequestMapping(value = "/getAll",method = RequestMethod.GET)
 	@JsonView(View.ServidorP.class)

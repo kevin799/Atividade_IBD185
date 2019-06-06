@@ -10,4 +10,8 @@ public interface ServidorPrincipalService {
 	
 	public List<ServidorPrincipal> lista();
 	
+	public ServidorPrincipal ligarServidor(String ip);
+	
+	public ServidorPrincipal desligaServidor(String ip);
+	
 }

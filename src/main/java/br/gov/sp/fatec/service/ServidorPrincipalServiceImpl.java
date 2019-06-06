@@ -17,6 +17,8 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	@Autowired
 	public ServidorPrincipalRepository serPrRep;
 	
+	
+	
 	@Override
 	@Transactional
 	public ServidorPrincipal salvar(ServidorPrincipal servidorP) {
@@ -37,6 +39,30 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 			retorno.add(servidor);
 		}
 		return retorno;
+	}
+
+	@Override
+	public ServidorPrincipal ligarServidor(String ip) {
+		ServidorPrincipal s = null;
+		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
+			s = servidor;
+			
+		}
+		s.setStatus(1);
+		serPrRep.save(s);
+		return s;
+	}
+
+	@Override
+	public ServidorPrincipal desligaServidor(String ip) {
+		ServidorPrincipal s = null;
+		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
+			s = servidor;
+			
+		}
+		s.setStatus(0);
+		serPrRep.save(s);
+		return s;
 	}
 
 }

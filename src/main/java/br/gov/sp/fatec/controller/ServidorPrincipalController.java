@@ -59,12 +59,12 @@ public class ServidorPrincipalController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getByIp")
-	public ResponseEntity<ServidorPrincipal>findIp(@RequestParam(value="ip",defaultValue="1") String ip){
-		ServidorPrincipal servidor = (ServidorPrincipal) serRepos.findByIp(ip);
+	public ResponseEntity<List<ServidorPrincipal>>findIp(@RequestParam(value="ip",defaultValue="1") String ip){
+		List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serRepos.findByIp(ip);
 		if(servidor == null) {
-			return new ResponseEntity<ServidorPrincipal>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<ServidorPrincipal>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<ServidorPrincipal>(servidor,HttpStatus.OK);
+		return new ResponseEntity<List<ServidorPrincipal>>(servidor,HttpStatus.OK);
 		
 	}
 	

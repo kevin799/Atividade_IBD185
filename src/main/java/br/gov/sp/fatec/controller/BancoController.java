@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,5 +61,13 @@ public class BancoController {
                 new ResponseEntity<Banco>(HttpStatus.NOT_FOUND);
     }
     
+    @CrossOrigin
+    @RequestMapping(value = "/getAll")
+    @JsonView(View.BancoCompleto.class)
+    public ResponseEntity<List<Banco>> findAll(@RequestParam(value="ip") String ip){
+    	List<Banco> banco = new ArrayList();
+    	banco = banS.listar(ip);
+    	return new ResponseEntity<List<Banco>>(banco, HttpStatus.OK);
+    }
    
 }

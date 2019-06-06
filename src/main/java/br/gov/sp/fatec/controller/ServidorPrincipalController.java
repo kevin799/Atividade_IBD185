@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -55,6 +56,19 @@ public class ServidorPrincipalController {
 		
 		return new ResponseEntity<List<ServidorPrincipal>>(servidor, HttpStatus.OK);
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/getByIp")
+	public ResponseEntity<ServidorPrincipal>findIp(@RequestParam(value="ip",defaultValue="1") String ip){
+		ServidorPrincipal servidor = (ServidorPrincipal) serRepos.findByIp(ip);
+		if(servidor == null) {
+			return new ResponseEntity<ServidorPrincipal>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<ServidorPrincipal>(servidor,HttpStatus.OK);
+		
+	}
+	
+	
 	/*@RequestMapping(value = "/getAll",method = RequestMethod.GET)
 	@JsonView(View.ServidorP.class)
 	public ResponseEntity<Collection<br.gov.sp.fatec.model.ServidorPrincipal>> getAll(){

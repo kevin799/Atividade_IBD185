@@ -1,7 +1,7 @@
 <template>
   <div class="banco">
     <div class="title">
-      <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between ">
+      <div class="container-title container-fluid mt-1 p-3 d-flex justify-content-between ">
         <div></div>
         <h1 class="mt-1">Database</h1>
         <div>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1" v-model="banco.port">
+                <input type="number" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1" v-model="banco.port">
             </div>
       
             <div class="input-group mb-3">
@@ -37,12 +37,14 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-lg" v-on:click="createBanco()">Save</button>
+                <button type="button" class="btn btn-danger" v-on:click="noneElemento()">Cancel</button>
+                <button type="button" class="btn btn-success " v-on:click="createBanco()">Save</button>
+                
             </div>
         </div>
 
         <div class="cont-info conrtainer col-8 mx-auto pt-2">
-            <div class="title subtitle d-flex justify-content-center mt-3">
+            <div class=" subtitle d-flex justify-content-center mt-3">
                 <h3 >Configuration Server</h3>
             
             </div>
@@ -67,7 +69,7 @@
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
-                <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
+                <input type="text" class=" mt-3 form-control" placeholder="Search Banco" v-model="search">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
                 </div>
@@ -77,7 +79,7 @@
             </div>
         </div>    
         <table class="table">
-            <thead class="thead bg-dark text-light">
+            <thead class="thead text-light">
                 <tr>
                     <th class="text-center border-right">Name</th>
                     <th class="text-center border-right">Port</th>
@@ -155,6 +157,7 @@ export default {
 
          createBanco () {
          var params = {
+            
             'nome': this.banco.name,
             'tipo': this.banco.type,
             'versao': this.banco.version,
@@ -162,9 +165,13 @@ export default {
             'desenvolvedor': this.banco.developer,
             'status': this.banco.status,
             'ser_id': 1,
+            
 
-        }   
-
+        }
+            
+        if(params.nome === "" || params.tipo === "" || params.versao === '' || params.porta === '' ||
+            params.desenvolvedor === '' || params.status === '') return console.log("nunda da pra fazer nada")
+        else{
         this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
         .then(response => {
             // JSON responses are automatically parsed.
@@ -173,10 +180,11 @@ export default {
             console.log(response);
             // this.showResponse = true
           }
-          )
-
+          ),
+        this.noneElemento()
       
-        },
+        }
+         },
         getbancobyId () {
         this.$http.get(`http://localhost:8082/springRest/banco/findByID?id=1` )//+ this.search)
           .then(response => {
@@ -185,6 +193,8 @@ export default {
             // console.log(response.data)
             this.response = true
           })
+
+          
       }
 
     
@@ -195,8 +205,17 @@ export default {
 </script>
 
 <style>
+    .btn{
+        border-radius: none;
+    }
+    .container-title{
+        background-color: #26748E;
+        box-shadow: 0 0px 100px 0px #26748E;
+    }
     .thead{
         font-family: roboto;
+        background: rgb(117, 121, 131);
+
     }
 
     .btn-plus{
@@ -210,23 +229,23 @@ export default {
   
 }
 .banco{
-    background: rgb(150, 149, 149);
+    background: #96D3D9;
     height: 100vh;
     width: 100vw;
 }
 .add-bd{
   display: none;
-  margin-top: 19%;
+  margin-top: 5%;
   margin-left: 20%;
   position: absolute;
   height: 62%;
   width: 35%;
   color: #fff;
-  background: #e0e4e9;;
+  background: #26748E;
   z-index: 1000;
 }
 .bds:hover{
-    background: #656769;;
+    background: #656769;
     transition: .5s;
 }
 .add-bd p{
@@ -245,13 +264,15 @@ export default {
 }
 
 .title{
-    background: #8a8e92;
+    background: #26748E;
      width: 100%;
-    color:white;
+    color:black ;
 }
 
 .cont-info {
-    background: #8a8e92;
+    margin-top: 2px;
+    background: #D3D2D8;
+    box-shadow: 10px 10px 15px 2px #26748E;
     
 
 }

@@ -70,3 +70,14 @@ INSERT INTO UAU_USUARIO_AUTORIZACAO(USR_ID, AUT_ID)
 SELECT USR_ID, AUT_ID
 FROM USR_USUARIO, AUT_AUTORIZACAO
 WHERE USR_NOME = 'admin';
+
+create table ser_servidor_principal (
+  ser_id bigint not null auto_increment primary key,
+  ser_ip varchar(50) not null,
+  ser_nome varchar(50) not null,
+  ser_maquina varchar(50) not null,
+  ser_processador varchar(50) not null,
+  ser_memoria int not null,
+  ser_espaco varchar(50) not null,
+  ser_status int
+);

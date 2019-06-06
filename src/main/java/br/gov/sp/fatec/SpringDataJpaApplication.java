@@ -74,8 +74,11 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		
 		for(Banco banc:b) {
 			System.out.println("Busca todos =====> " + banc.getNome());
+			
 		}
-		System.out.println("Busca todos =====> " +servPrServ.atualizaServidor("192.161.1.11", "Mudou", "AWS", "i7", 64, "2Tb"));
+		servP = new ServidorPrincipal("192.161.1.150", "Servidor 5", "AWS", "i7", 8, "1Tb",1);
+		//System.out.println("Busca todos =====> " +servPrServ.atualizaServidor("192.161.1.11", "Mudou", "AWS", "i7", 64, "2Tb"));
+		System.out.println("Servidor Principal insert===>" + servPrServ.salvar(servP));
 		//System.out.println("Busca todos =====> " +servPrServ.ligarServidor("192.161.1.13"));
 		////////////////////////////
 		//System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));

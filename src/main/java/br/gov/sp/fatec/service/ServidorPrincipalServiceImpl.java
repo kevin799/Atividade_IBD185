@@ -24,7 +24,13 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	@Override
 	@Transactional
 	public ServidorPrincipal salvar(ServidorPrincipal servidorP) {
-		if(serPrRep.findByIp(servidorP.getIp())==null) {
+		ServidorPrincipal p = null;
+		List<ServidorPrincipal> retorno = new ArrayList<ServidorPrincipal>();
+		retorno = serPrRep.findByIp(servidorP.getIp());
+		for(ServidorPrincipal servidor: retorno) {
+			p = servidor;
+		}
+		if(p==null) {
 			serPrRep.save(servidorP);
 			return servidorP;
 		}

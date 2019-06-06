@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.model.ServidorPrincipal;
 import br.gov.sp.fatec.repository.ServidorPrincipalRepository;
+import br.gov.sp.fatec.repository.ServidorRepository;
 
 @Service("ServidorPrincipalService")
 @Transactional
@@ -16,8 +18,8 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 
 	@Autowired
 	public ServidorPrincipalRepository serPrRep;
-	
-	
+	@Autowired
+	public ServidorRepository serRep;
 	
 	@Override
 	@Transactional
@@ -69,6 +71,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	public ServidorPrincipal atualizaServidor(String ip, String nome, String maquina, String processador, int memoria,
 			String espaco) {
 		ServidorPrincipal s = null;
+		
 		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
 			s = servidor;	
 		}
@@ -78,6 +81,17 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 		s.setMemoria(memoria);
 		s.setEspaco(espaco);
 		serPrRep.save(s);
+		
+		
+		for(Servidor servidor:serRep.findByIp(ip)) {
+			servidor.setNome(nome);
+			servidor.setMaquina(s.getMaquina());
+			servidor.setProcessador(processador);
+			servidor.setMemoria(memoria);
+			servidor.setEspaco(espaco);
+			serRep.save(servidor);
+		}
+		
 		return s;
 	}
 

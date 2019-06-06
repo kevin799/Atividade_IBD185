@@ -122,9 +122,7 @@ export default {
     }
   },
     mounted(){
-        
         this.getAllServidores()
-        this.total = this.servidores.length
         // this.habiServiButton()
         // this.openInfoServ()
         // Popula os dados na tela para lista de servidores
@@ -182,7 +180,7 @@ export default {
             })
             }
             else{
-                  this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip='+this.search)
+                  this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getByIp?ip='+this.search)
              .then(res => {
             this.servidores = res.data;
             
@@ -219,19 +217,13 @@ export default {
                 }
         }      
     }
-        
-
-
-    
-   
-    
 }
 </script>
 
 <style>
 .home{
     background: rgb(150, 149, 149);
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
     .thead{

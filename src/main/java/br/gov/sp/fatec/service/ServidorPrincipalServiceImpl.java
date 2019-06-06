@@ -65,4 +65,20 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 		return s;
 	}
 
+	@Override
+	public ServidorPrincipal atualizaServidor(String ip, String nome, String maquina, String processador, int memoria,
+			String espaco) {
+		ServidorPrincipal s = null;
+		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
+			s = servidor;	
+		}
+		s.setNome(nome);
+		s.setMaquina(maquina);
+		s.setProcessador(processador);
+		s.setMemoria(memoria);
+		s.setEspaco(espaco);
+		serPrRep.save(s);
+		return s;
+	}
+
 }

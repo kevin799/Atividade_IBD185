@@ -91,6 +91,22 @@ public class ServidorPrincipalController {
 		
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/atualizaServidorP",method = RequestMethod.POST)
+	public ResponseEntity<ServidorPrincipal> atualiza(@RequestParam(value="ip") String ip,
+			@RequestParam(value="nome") String nome,@RequestParam(value="maquina") String maquina,
+			@RequestParam(value="processador") String processador,@RequestParam(value="memoria") int memoria,
+			@RequestParam(value="espaco") String espaco){
+		ServidorPrincipal servidor = serR.atualizaServidor(ip, nome, maquina, processador, memoria, espaco);
+		if(servidor == null) {
+			return new ResponseEntity<ServidorPrincipal>(HttpStatus.NOT_FOUND); 
+		}
+		return new ResponseEntity<ServidorPrincipal>(servidor,HttpStatus.OK);
+		
+	}
+	
+	
+	
 	/*@RequestMapping(value = "/getAll",method = RequestMethod.GET)
 	@JsonView(View.ServidorP.class)
 	public ResponseEntity<Collection<br.gov.sp.fatec.model.ServidorPrincipal>> getAll(){

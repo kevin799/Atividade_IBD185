@@ -14,4 +14,6 @@ public interface ServidorPrincipalService {
 	
 	public ServidorPrincipal desligaServidor(String ip);
 	
+	public ServidorPrincipal atualizaServidor(String ip, String nome, String maquina,String processador,int memoria,String espaco);
+	
 }

@@ -162,6 +162,7 @@ export default {
             'desenvolvedor': this.banco.developer,
             'status': this.banco.status,
             'ser_id': 1,
+            
 
         }   
 
@@ -173,8 +174,8 @@ export default {
             console.log(response);
             // this.showResponse = true
           }
-          )
-
+          ),
+        this.noneElemento()
       
         },
         getbancobyId () {
@@ -185,6 +186,8 @@ export default {
             // console.log(response.data)
             this.response = true
           })
+
+          
       }
 
     

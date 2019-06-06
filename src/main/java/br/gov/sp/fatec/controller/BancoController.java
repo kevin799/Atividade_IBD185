@@ -54,5 +54,11 @@ public class BancoController {
         		new ResponseEntity<Banco>(banco.get(), HttpStatus.OK):
                 new ResponseEntity<Banco>(HttpStatus.NOT_FOUND);
     }
+    /*
+    @CrossOrigin
+    @RequestMapping(value = "/getAll")
+    @JsonView(View.BancoList.class)
+    public ResponseEntity<List<Banco>> 
+    */
     
 }

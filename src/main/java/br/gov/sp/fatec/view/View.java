@@ -42,6 +42,9 @@ public class View {
 	
 	public static class Autorizacao {
 	}
+	
+	public static class BancoList {
+	}
 
 
 }

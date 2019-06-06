@@ -10,7 +10,7 @@ import br.gov.sp.fatec.model.Servidor;
 
 public interface ServidorRepository extends CrudRepository<Servidor,Long>{
 	
-	public Servidor findByIp(String ip);
+	public List<Servidor> findByIp(String ip);
 	
 	public List<Servidor> findByMaquinaContainsIgnoreCaseOrNomeContainsIgnoreCase(String maquina,String servidor);
 	/*

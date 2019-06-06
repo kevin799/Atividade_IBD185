@@ -42,16 +42,14 @@ public class ServidorController {
 	
 	@RequestMapping(value ="/getByIp")
 	@JsonView(View.ServidorCompleto.class)
-	public ResponseEntity<Servidor> get(@RequestParam(value="ip", defaultValue="1") String ip){
+	public ResponseEntity<List<Servidor>> get(@RequestParam(value="ip", defaultValue="1") String ip){
 		System.out.println(ip);
-		Servidor servidor = servidorRepo.findByIp(ip);
-		
-		System.out.println(servidor.getNome());
+		List<Servidor> servidor = servidorRepo.findByIp(ip);
 		
 		if(servidor == null) {
-			return new	ResponseEntity<Servidor>(HttpStatus.NOT_FOUND);
+			return new	ResponseEntity<List<Servidor>>(HttpStatus.NOT_FOUND);
 		}
-		return new	ResponseEntity<Servidor>(servidor, HttpStatus.OK);
+		return new	ResponseEntity<List<Servidor>>(servidor, HttpStatus.OK);
 
 	}
 	@RequestMapping(value = "/getServip", method = RequestMethod.GET)

@@ -22,7 +22,7 @@ public class BancoController {
     
     @Autowired
     private BancoRepository bancoRepo;
-
+    @CrossOrigin
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @JsonView(View.BancoCompleto.class)
     public ResponseEntity<Banco> save(@RequestBody Banco banco, HttpServletRequest req, HttpServletResponse res) {
@@ -36,7 +36,7 @@ public class BancoController {
         		new ResponseEntity<>(HttpStatus.NOT_FOUND):
                 new ResponseEntity<>(banco, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @RequestMapping(value = "/findByName")
     @JsonView(View.BancoCompleto.class)
     public ResponseEntity<List<Banco>> findByName(@RequestParam(value="name") String name) {
@@ -45,7 +45,7 @@ public class BancoController {
                 new ResponseEntity<List<Banco>>(HttpStatus.NOT_FOUND):
                 new ResponseEntity<List<Banco>>(banco, HttpStatus.OK);
     }
-    
+    @CrossOrigin
     @RequestMapping(value = "/findByID")
     @JsonView(View.BancoNomeTipo.class)
     public ResponseEntity<Banco> findByID(@RequestParam(value="id") Long id) {

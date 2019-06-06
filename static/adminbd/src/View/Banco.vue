@@ -112,8 +112,8 @@
 
 <script>
 export default {
-    data(){
-        return{
+    data: function() { 
+        return {
             banco:{
                 name:'',
                 type:'',
@@ -123,9 +123,10 @@ export default {
                 status:'',
                 id: 0
             },
-            search: '', 
+            search: '',  
             bancoId:''          
-        }
+        
+        } 
 
     },
     mounted(){
@@ -154,24 +155,25 @@ export default {
 
          createBanco () {
          var params = {
-            'nome': this.name,
-            'tipo': this.type,
-            'versao': this.version,
-            'porta': this.port,
-            'desenvolvedor': this.developer,
-            'status': this.status,
-            'ser_id': 1
+            'nome': this.banco.name,
+            'tipo': this.banco.type,
+            'versao': this.banco.version,
+            'porta': this.banco.port,
+            'desenvolvedor': this.banco.developer,
+            'status': this.banco.status,
+            'ser_id': 1,
 
-        }
+        }   
 
-        this.$http.post(`/springRest/banco/save`, params)
+        this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
         .then(response => {
             // JSON responses are automatically parsed.
-            this.response = response.data
-            this.banco.id = response.data
-            console.log(response.data)
-            this.showResponse = true
-          })
+            // this.response = response.data
+            // this.banco.id = response.data
+            console.log(response);
+            // this.showResponse = true
+          }
+          )
 
       
         },
@@ -180,7 +182,7 @@ export default {
           .then(response => {
             // JSON responses are automatically parsed.
             this.response = response.data
-            console.log(response.data)
+            // console.log(response.data)
             this.response = true
           })
       }

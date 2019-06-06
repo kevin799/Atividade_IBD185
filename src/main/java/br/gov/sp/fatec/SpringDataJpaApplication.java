@@ -51,13 +51,13 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		
 		System.out.println("Encontrou========>"+ bancoService.incluiBancoClasse(ban));
 		System.out.println("Lista servidores======>"+servRep.findBySerip());
-		System.out.println("USO DE JOIN========>"+bancRep.findByContinsert(8082,"192.161.1.13"));
+		System.out.println("USO DE JOIN========>"+bancRep.findByContinsert(8080,"192.161.1.12"));
 		System.out.println(servRep.findByMaquinaContainsIgnoreCaseOrNomeContainsIgnoreCase("AWS","Servidor 3"));
 		////////////////////////////
 		servP = new ServidorPrincipal("192.161.1.12", "Servidor 2", "AWS", "i7", 8, "1Tb",1);
 		System.out.println("Encontrou com servidor principal ========>"+ servPrServ.salvar(servP));
 		
-		
+		//bancRep.findByAll("192.161.1.12");
 		
 		System.out.println("Repository =====> ");
 		////////////////////////////

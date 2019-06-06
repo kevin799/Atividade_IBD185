@@ -46,5 +46,17 @@ public class View {
 	public static class BancoList {
 	}
 
+	public static class ServidorPrincipalTipo{
+		
+	}
+	
+	public static class ServidorPrincipal extends ServidorPrincipalTipo{
+		
+	}
+	
+	public static class ServidorP {
+		
+	}
+
 
 }

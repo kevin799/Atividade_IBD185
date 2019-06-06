@@ -2,8 +2,10 @@ br/gov/sp/fatec/view/View$Anotacao.class
 br/gov/sp/fatec/service/AutorizacaoServiceImpl.class
 br/gov/sp/fatec/model/Autorizacao.class
 br/gov/sp/fatec/service/AutorizacaoService.class
+br/gov/sp/fatec/controller/ServidorPrincipalController.class
 br/gov/sp/fatec/view/View$UsuarioCompleto.class
 br/gov/sp/fatec/service/ServidorPrincipalService.class
+br/gov/sp/fatec/view/View$ServidorPrincipal.class
 br/gov/sp/fatec/repository/BancoRepository.class
 br/gov/sp/fatec/service/UsuarioServiceImpl.class
 br/gov/sp/fatec/service/AnotacaoServiceImpl.class
@@ -33,7 +35,9 @@ br/gov/sp/fatec/controller/HomeController.class
 br/gov/sp/fatec/model/Anotacao.class
 br/gov/sp/fatec/view/View$ServidorCompleto.class
 br/gov/sp/fatec/repository/ServidorPrincipalRepository.class
+br/gov/sp/fatec/view/View$ServidorPrincipalTipo.class
 br/gov/sp/fatec/SpringDataJpaApplication.class
+br/gov/sp/fatec/view/View$ServidorP.class
 br/gov/sp/fatec/view/View$BancoNomeTipo.class
 br/gov/sp/fatec/controller/AutorizacaoController.class
 br/gov/sp/fatec/view/View$BancoCompleto.class

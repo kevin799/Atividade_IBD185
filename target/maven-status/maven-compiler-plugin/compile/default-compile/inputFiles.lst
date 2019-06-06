@@ -34,4 +34,5 @@
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/ServidorController.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/model/Banco.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/UsuarioService.java
+/home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/controller/ServidorPrincipalController.java
 /home/java/eclipse-workspace/Atividade_IBD185/src/main/java/br/gov/sp/fatec/service/AutorizacaoService.java

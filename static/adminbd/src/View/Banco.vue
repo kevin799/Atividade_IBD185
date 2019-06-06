@@ -163,16 +163,6 @@ export default {
             'status': this.banco.status,
             'ser_id': 1,
 
-            
-
-            // "nome":"teste_lusca",
-            // "tipo":"teste_lusca",
-            // "versao":1,
-            // "porta":192,
-            // "desenvolvedor":"teste_lusca",
-            // "status":1,
-            // "ser_id":1
-
         }   
 
         this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
@@ -188,7 +178,7 @@ export default {
       
         },
         getbancobyId () {
-        this.$http.get(`http://localhost:8081/springRest/banco/findByID?id=1` )//+ this.search)
+        this.$http.get(`http://localhost:8082/springRest/banco/findByID?id=1` )//+ this.search)
           .then(response => {
             // JSON responses are automatically parsed.
             this.response = response.data

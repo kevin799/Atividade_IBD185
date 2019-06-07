@@ -3,7 +3,21 @@
     <div class="title">
       <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between ">
         <div></div>
-        <h1 class="mt-1">Database</h1>
+
+
+
+        <div class="row text-center">
+        <h3>Clicked: {{ $store.state.count }} times, count is {{ evenOrOdd }}.</h3>
+        <button class="btn btn-success" @click="increment">+</button>
+        <button class="btn btn-danger" @click="decrement">-</button>
+        <button class="btn" @click="incrementIfOdd">Increment if odd</button>
+        <button class="btn" @click="incrementAsync">Increment async</button>
+        </div>
+
+
+
+        
+        <!-- <h1 class="mt-1">Database</h1> -->
         <div>
              
         </div>
@@ -111,7 +125,13 @@
 
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+//Link https://medium.com/codingthesmartway-com-blog/vue-js-2-state-management-with-vuex-introduction-db26cb495113
 export default {
+    name: 'Banco',
+    computed: mapGetters([
+        'evenOrOdd'
+    ]),
     data: function() { 
         return {
             banco:{
@@ -134,6 +154,14 @@ export default {
         console.log(this.bancoId)
     },
     methods:{
+
+        ...mapActions([
+            'increment',
+            'decrement',
+            'incrementIfOdd',
+            'incrementAsync'
+  ]),
+
         blockElemento(){
   
             document.getElementById('add-bd').style.display = 'block'

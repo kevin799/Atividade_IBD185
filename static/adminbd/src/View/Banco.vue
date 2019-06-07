@@ -225,7 +225,7 @@ export default {
         background: #d0d5db;
     }
 *{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'OpenSans', sans-serif;
   
 }
 .banco{

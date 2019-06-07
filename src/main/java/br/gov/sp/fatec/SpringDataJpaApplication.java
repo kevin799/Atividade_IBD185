@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import antlr.collections.List;
 import br.gov.sp.fatec.model.Banco;
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.model.ServidorPrincipal;
@@ -29,7 +30,6 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 	@Autowired
 	private ServidorPrincipalService servPrServ;
 	private ServidorPrincipal servP;
-	
 	
 	public static void main(String[] args) {
 		
@@ -56,6 +56,10 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		////////////////////////////
 		servP = new ServidorPrincipal("192.161.1.12", "Servidor 2", "AWS", "i7", 8, "1Tb",1);
 		System.out.println("Encontrou com servidor principal ========>"+ servPrServ.salvar(servP));
+		
+		
+		
+		System.out.println("Repository =====> ");
 		////////////////////////////
 		//System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));
 		//System.out.println("Encontrou========>"+bancRep.findByDev("Oracle"));

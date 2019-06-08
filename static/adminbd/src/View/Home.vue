@@ -166,6 +166,8 @@ export default {
         },
 
         openInfoServ(server){
+            //primeiro parametro é QUAL METODO ELE VAI EXECUTAR DENTRO DO MUTATION!!!
+            // o segundo é o seu dado que voce quer enviar, e assim vai
             this.$store.commit('change',server)
             // console.table(server)
 

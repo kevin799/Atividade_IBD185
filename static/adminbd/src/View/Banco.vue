@@ -114,11 +114,13 @@
 
 <script>
 
+//Importando o store 
 import { store } from '../store/store'
 
 
 export default {
     component: {
+        //adicionando o store para usar dentro do componente
         store
     },
     data: function() { 
@@ -152,6 +154,7 @@ export default {
     mounted(){
         this.bancoId = this.getbancobyId()
         console.log('PAGINA: BANCO:')
+        // Pra acessar a variavel do Store precisa usar this.$store.state
         console.log( this.$store.state.servidor_escolhido)
     },
     methods:{

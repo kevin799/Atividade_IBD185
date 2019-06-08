@@ -63,15 +63,25 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr class="servs" >
+                <tr class="servs" v-for="server in this.servidores">
 
 
                     <!-- <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
                     <th class="text-center"> 192.168.1.2</th>
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> -->
 
-                     <th v-for"server in servers" :key="servidores"></th> 
+                    
+                    
+                        <th id="servs" class="text-center"  v-on:click="openInfoServ">  {{server.nome}} </th>
+                        
+                        <th class="text-center"> {{server.ip}} </th>
 
+                        <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> 
+
+                    
+
+                
+                     
                 </tr>
             </tbody>
             <tfoot>
@@ -89,7 +99,7 @@ export default {
     data() {
     return {
       search: '',
-      servidores:'',
+      servidores:[],
     }
   },
     mounted(){
@@ -122,35 +132,39 @@ export default {
       
     
         habiServiButton(){
-            const btn = document.getElementById("btn-status");
-            if (btn.innerHTML == '√'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "red"
-                btn.innerHTML = 'X'
+            // const btn = document.getElementById("btn-status");
+            // if (btn.innerHTML == '√'){
+            //     btn.addEventListener("click", () => {
+            //     btn.style.backgroundColor = "red"
+            //     btn.innerHTML = 'X'
                 
             
-                })
-            }
-             if (btn.innerHTML == 'X'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "green"
-                btn.innerHTML = '√'
-                })     
-            }  
+            //     })
+            // }
+            //  if (btn.innerHTML == 'X'){
+            //     btn.addEventListener("click", () => {
+            //     btn.style.backgroundColor = "green"
+            //     btn.innerHTML = '√'
+            //     })     
+            // }  
         },
 
         openInfoServ(){
             this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
             .then(res =>{
-            this.servidores = res.data
-            console.log(this.servidores);
+            this.servidores = res.data;
+            
+            //this.servidores.push(a);
+                
+           
             })
             // const divs = document.getElementById('servs')
             
-            divs.addEventListener("click", () => {
-                // window.open('./banco');
-                this.$router.push({ path: 'banco'})
-            })   
+            // divs.addEventListener("click", function(x) {
+            //     // window.open('./banco');
+            //     this.$router.push({ path: 'banco'})
+                
+            // })   
         },
 
         

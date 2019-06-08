@@ -94,7 +94,12 @@
 
 
 <script>
+import { store } from '../store/store'
+
 export default {
+    component: {
+        store
+    },
     data() {
     return {
       search: '',
@@ -157,7 +162,7 @@ export default {
         },
 
         openInfoServ(server){
-
+            this.$store.commit('change',server)
             console.table(server)
 
             // this.$router.push({ path: 'banco'})

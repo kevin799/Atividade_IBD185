@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import antlr.collections.List;
+import java.util.List;
 import br.gov.sp.fatec.model.Banco;
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.model.ServidorPrincipal;
@@ -58,8 +58,20 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		System.out.println("Encontrou com servidor principal ========>"+ servPrServ.salvar(servP));
 		
 		//bancRep.findByAll("192.161.1.12");
+		long a = 1;
+		System.out.println("Busca por ip =====> " + servRep.buscaByIp(a).getMaquina());
+		System.out.println("Busca por ip banco =====> " + bancRep.findByBanco(a).getNome());
+		List<Banco> b = new ArrayList();
+		b = bancoService.listar("192.161.1.12");
+		System.out.println("Busca todos =====> " +b.size());
 		
-		System.out.println("Repository =====> ");
+		List<Servidor> servidor = servRep.buscaPorIp("192.161.1.12");
+		
+		System.out.println("Busca todos =====> " +servidor.size());
+		
+		for(Banco banc:b) {
+			System.out.println("Busca todos =====> " + banc.getNome());
+		}
 		////////////////////////////
 		//System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));
 		//System.out.println("Encontrou========>"+bancRep.findByDev("Oracle"));

@@ -23,6 +23,8 @@ public interface BancoRepository extends CrudRepository<Banco,Long>{
 	@Query(value="select count(b.ban_porta) from ban_banco b JOIN ser_servidor s ON (b.ser_id = s.ser_id) where b.ban_porta  = :porta and s.ser_ip = :ip", nativeQuery = true)
 	public int findByContinsert(@Param("porta") Integer porta,@Param("ip") String ip );
 	
+	@Query("select s from Banco s where s.servidor.id = :id")
+	public Banco findByBanco(@Param("id") long id);
 	
 	
 	

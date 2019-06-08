@@ -52,9 +52,7 @@ public class ServidorPrincipalController {
 	//@JsonView(View.ServidorPrincipal.class)
 	public ResponseEntity<List<ServidorPrincipal>>findAll(){
 		List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serRepos.findAll();
-		for(ServidorPrincipal a: servidor) {
-			System.out.println(a.getIp());
-		}
+		
 		return new ResponseEntity<List<ServidorPrincipal>>(servidor, HttpStatus.OK);
 	}
 	/*@RequestMapping(value = "/getAll",method = RequestMethod.GET)

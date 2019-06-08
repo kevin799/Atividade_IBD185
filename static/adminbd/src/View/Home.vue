@@ -64,9 +64,14 @@
             </thead>
             <tbody class="tbody">
                 <tr class="servs" >
-                    <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
+
+
+                    <!-- <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
                     <th class="text-center"> 192.168.1.2</th>
-                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> -->
+
+                     <th v-for"server in servers" :key="servidores"></th> 
+
                 </tr>
             </tbody>
             <tfoot>
@@ -83,7 +88,8 @@
 export default {
     data() {
     return {
-      search: ''
+      search: '',
+      servidores:'',
     }
   },
     mounted(){
@@ -100,10 +106,11 @@ export default {
 
         search_ip(){
             //Estac com problema de CORS - Arruamr
-             this.$http.get(`http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}`)
+             this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}')
              .then(res => {
             // console.log(res)
             // this.$router.push({ path: 'home'})
+            this.servidores = res;
             console.log(res)
             })
         },
@@ -133,12 +140,20 @@ export default {
         },
 
         openInfoServ(){
-            const divs = document.getElementById('servs')
+            this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
+            .then(res =>{
+            this.servidores = res.data
+            console.log(this.servidores);
+            })
+            // const divs = document.getElementById('servs')
+            
             divs.addEventListener("click", () => {
                 // window.open('./banco');
                 this.$router.push({ path: 'banco'})
             })   
         },
+
+        
 
     }
         

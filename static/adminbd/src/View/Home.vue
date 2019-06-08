@@ -45,9 +45,9 @@
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
-                <input type="text" class=" mt-3 form-control" placeholder="Search Server">
+                <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="search_ip">Search</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -81,6 +81,11 @@
 
 <script>
 export default {
+    data() {
+    return {
+      search: ''
+    }
+  },
     mounted(){
         this.habiServiButton()
         this.openInfoServ()
@@ -91,6 +96,16 @@ export default {
             document.getElementById('add-serve').style.display = 'block'
 
 
+        },
+
+        search_ip(){
+            //Estac com problema de CORS - Arruamr
+             this.$http.get(`http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}`)
+             .then(res => {
+            // console.log(res)
+            // this.$router.push({ path: 'home'})
+            console.log(res)
+            })
         },
         noneElemento(){
         
@@ -123,11 +138,10 @@ export default {
                 // window.open('./banco');
                 this.$router.push({ path: 'banco'})
             })   
+        },
 
-            
-
-        }
     }
+        
 
 
     

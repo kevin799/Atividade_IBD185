@@ -21,7 +21,7 @@ const router = new Router({
     },
     {
       path: '/banco',
-      name: '/banco',
+      name: 'banco',
       component: Banco
     }
   

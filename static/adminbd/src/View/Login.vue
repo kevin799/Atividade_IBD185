@@ -9,7 +9,7 @@
       <label for="inputPassword">Senha</label>
       <input type="password" id="inputPassword" class="form-control" required v-model="password" >
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" to="/home">Ok</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Ok</button>
   </form>
 </template>
 

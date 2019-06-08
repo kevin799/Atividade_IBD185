@@ -50,13 +50,13 @@
             </div>
             <div class="info-serve">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="servidor.nome">
+                    <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.ip">
                     
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Machine" aria-label="Ip" aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Processor" aria-label="Ip" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Machine" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.maquina">
+                    <input type="text" class="form-control" placeholder="Processor" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.processador">
                 </div>
                 <div class="input-group mb-3 pb-3 pr-5">
                     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -113,9 +113,27 @@
 
 
 <script>
+
+import { store } from '../store/store'
+
+
 export default {
+    component: {
+        store
+    },
     data: function() { 
         return {
+            servidor: {
+                espaco: this.$store.state.servidor_escolhido.espaco,
+                id: this.$store.state.servidor_escolhido.id,
+                ip: this.$store.state.servidor_escolhido.ip,
+                maquina: this.$store.state.servidor_escolhido.maquina,
+                memoria: this.$store.state.servidor_escolhido.memoria,
+                nome: this.$store.state.servidor_escolhido.nome,
+                processador: this.$store.state.servidor_escolhido.processador,
+                status: this.$store.state.servidor_escolhido.status
+
+            },
             banco:{
                 name:'',
                 type:'',
@@ -133,7 +151,8 @@ export default {
     },
     mounted(){
         this.bancoId = this.getbancobyId()
-        console.log(this.bancoId)
+        console.log('PAGINA: BANCO:')
+        console.log( this.$store.state.servidor_escolhido)
     },
     methods:{
         blockElemento(){

@@ -118,6 +118,10 @@ export default {
             })
     },
     methods:{
+
+        
+
+
         blockElemento(){
   
             document.getElementById('add-serve').style.display = 'block'
@@ -163,9 +167,9 @@ export default {
 
         openInfoServ(server){
             this.$store.commit('change',server)
-            console.table(server)
+            // console.table(server)
 
-            // this.$router.push({ path: 'banco'})
+            this.$router.push({ path: 'banco'})
  
         },
 

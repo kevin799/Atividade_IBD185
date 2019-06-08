@@ -120,8 +120,11 @@ export default {
         openInfoServ(){
             const divs = document.getElementById('servs')
             divs.addEventListener("click", () => {
-                window.open('./banco');
+                // window.open('./banco');
+                this.$router.push({ path: 'banco'})
             })   
+
+            
 
         }
     }

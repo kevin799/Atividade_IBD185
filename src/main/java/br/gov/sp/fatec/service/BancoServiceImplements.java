@@ -1,5 +1,8 @@
 package br.gov.sp.fatec.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +31,21 @@ public class BancoServiceImplements implements BancoService{
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Banco> listar(String ip) {
+		List<Servidor> servidor = servRep.findByIp(ip);
+		List<Banco> banco = new ArrayList();
+		List<Long> l = new ArrayList();
+		
+		for(Servidor s: servidor) {
+			l.add(s.getId());
+		}
+		for(Long num:l) {
+			banco.add(bancRep.findByBanco(num));
+		}
+		return banco;
 	}
 
 }

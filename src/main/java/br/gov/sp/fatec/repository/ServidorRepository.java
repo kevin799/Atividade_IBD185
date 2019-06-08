@@ -23,8 +23,13 @@ public interface ServidorRepository extends CrudRepository<Servidor,Long>{
 	@Query("select count(*) from Servidor s where s.ip = :ip")
 	public int findByQntip(@Param("ip") String ip);
 	
+	@Query("select s from Servidor s where s.ip = :ip")
+	public List<Servidor> buscaPorIp(@Param("ip") String ip);
+	
 	@Query(value="select distinct s.ser_ip ip from ser_servidor s", nativeQuery = true)
 	public List<String> findBySerip();
 
+	@Query("select s from Servidor s where s.id = :id")
+	public Servidor buscaByIp(@Param("id") long id);
 
 }

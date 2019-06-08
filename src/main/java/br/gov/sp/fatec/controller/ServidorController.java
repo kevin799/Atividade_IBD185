@@ -53,7 +53,7 @@ public class ServidorController {
 
 	}
 	@RequestMapping(value = "/getServip", method = RequestMethod.GET)
-	@JsonView(View.Anotacao.class)
+	@JsonView(View.ServidorCompleto.class)
 	public  ResponseEntity<List<String>> getServip(){
 		List<String> listaIp = servidorRepo.findBySerip();
 		if(listaIp == null) {
@@ -61,6 +61,7 @@ public class ServidorController {
 		}
 		return new ResponseEntity<List<String>>(listaIp,HttpStatus.OK);
 	}
+	
 	
 	
 

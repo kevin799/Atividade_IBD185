@@ -45,9 +45,9 @@
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
-                <input type="text" class=" mt-3 form-control" placeholder="Search Server">
+                <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="search_ip">Search</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -63,10 +63,24 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr class="servs" >
-                    <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
+                <tr class="servs" v-for="server in this.servidores">
+
+
+                    <!-- <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
                     <th class="text-center"> 192.168.1.2</th>
-                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> -->
+               
+                        <th id="servs" class="text-center"  v-on:click="openInfoServ(server)">  {{server.nome}} </th>
+                        <th class="text-center"> {{server.ip}} </th>
+                        <th class=" text-center" >
+                            <div v-if="server.status == 1">
+                                <button type="button" class="btn btn-success" id="btn-status" > √</button>
+                            </div>
+                            <div v-else>
+                                <button type="button" class="btn btn-danger" id="btn-alert"> √</button>
+                            </div>
+                        </th> 
+
                 </tr>
             </tbody>
             <tfoot>
@@ -81,9 +95,22 @@
 
 <script>
 export default {
+    data() {
+    return {
+      search: '',
+      servidores:[],
+    }
+  },
     mounted(){
-        this.habiServiButton()
-        this.openInfoServ()
+        // this.habiServiButton()
+        // this.openInfoServ()
+
+
+        // Popula os dados na tela para lista de servidores
+        this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
+            .then(res =>{
+                this.servidores = res.data;
+            })
     },
     methods:{
         blockElemento(){
@@ -91,6 +118,17 @@ export default {
             document.getElementById('add-serve').style.display = 'block'
 
 
+        },
+
+        search_ip(){
+            //Estac com problema de CORS - Arruamr
+             this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}')
+             .then(res => {
+            // console.log(res)
+            // this.$router.push({ path: 'home'})
+            this.servidores = res;
+            console.log(res)
+            })
         },
         noneElemento(){
         
@@ -100,31 +138,36 @@ export default {
       
     
         habiServiButton(){
-            const btn = document.getElementById("btn-status");
-            if (btn.innerHTML == '√'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "red"
-                btn.innerHTML = 'X'
+
+            // const btn = document.getElementById("btn-status");
+            // if (btn.innerHTML == '√'){
+            //     btn.addEventListener("click", () => {
+            //     btn.style.backgroundColor = "red"
+            //     btn.innerHTML = 'X'
                 
             
-                })
-            }
-             if (btn.innerHTML == 'X'){
-                btn.addEventListener("click", () => {
-                btn.style.backgroundColor = "green"
-                btn.innerHTML = '√'
-                })     
-            }  
+            //     })
+            // }
+            //  if (btn.innerHTML == 'X'){
+            //     btn.addEventListener("click", () => {
+            //     btn.style.backgroundColor = "green"
+            //     btn.innerHTML = '√'
+            //     })     
+            // }  
         },
 
-        openInfoServ(){
-            const divs = document.getElementById('servs')
-            divs.addEventListener("click", () => {
-                window.open('./banco');
-            })   
+        openInfoServ(server){
 
-        }
+            console.table(server)
+
+            // this.$router.push({ path: 'banco'})
+ 
+        },
+
+        
+
     }
+        
 
 
     

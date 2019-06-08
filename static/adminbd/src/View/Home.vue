@@ -69,19 +69,18 @@
                     <!-- <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
                     <th class="text-center"> 192.168.1.2</th>
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> -->
-
-                    
-                    
-                        <th id="servs" class="text-center"  v-on:click="openInfoServ">  {{server.nome}} </th>
-                        
+               
+                        <th id="servs" class="text-center"  v-on:click="openInfoServ(server)">  {{server.nome}} </th>
                         <th class="text-center"> {{server.ip}} </th>
+                        <th class=" text-center" >
+                            <div v-if="server.status == 1">
+                                <button type="button" class="btn btn-success" id="btn-status" > √</button>
+                            </div>
+                            <div v-else>
+                                <button type="button" class="btn btn-danger" id="btn-alert"> √</button>
+                            </div>
+                        </th> 
 
-                        <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="habiServiButton">√</button></th> 
-
-                    
-
-                
-                     
                 </tr>
             </tbody>
             <tfoot>
@@ -103,8 +102,15 @@ export default {
     }
   },
     mounted(){
-        this.habiServiButton()
-        this.openInfoServ()
+        // this.habiServiButton()
+        // this.openInfoServ()
+
+
+        // Popula os dados na tela para lista de servidores
+        this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
+            .then(res =>{
+                this.servidores = res.data;
+            })
     },
     methods:{
         blockElemento(){
@@ -132,6 +138,7 @@ export default {
       
     
         habiServiButton(){
+
             // const btn = document.getElementById("btn-status");
             // if (btn.innerHTML == '√'){
             //     btn.addEventListener("click", () => {
@@ -149,22 +156,12 @@ export default {
             // }  
         },
 
-        openInfoServ(){
-            this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
-            .then(res =>{
-            this.servidores = res.data;
-            
-            //this.servidores.push(a);
-                
-           
-            })
-            // const divs = document.getElementById('servs')
-            
-            // divs.addEventListener("click", function(x) {
-            //     // window.open('./banco');
-            //     this.$router.push({ path: 'banco'})
-                
-            // })   
+        openInfoServ(server){
+
+            console.table(server)
+
+            // this.$router.push({ path: 'banco'})
+ 
         },
 
         

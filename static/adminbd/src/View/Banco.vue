@@ -59,7 +59,7 @@
                     <input type="text" class="form-control" placeholder="Processor" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.processador">
                 </div>
                 <div class="input-group mb-3 pb-3 pr-5">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Memory" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="servidor.memoria">
                     <div class="input-group-append">
                         <button class="btn btn-primary mt-2 " type="button" id="button-addon2">Alter</button>
                     </div>
@@ -88,9 +88,9 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr id="bds" v-for="banco in this.bancoId" :key="banco.name" >
+                <!-- <tr id="bds" v-for="banco in this.bancos" :key="banco.name" >
                     <th class="text-center"> {{banco.name}}</th>
-                </tr>
+                </tr> -->
 
                 <!-- <tr id="bds" v-for="teste in testes" :key="teste.name">
 
@@ -125,6 +125,7 @@ export default {
     },
     data: function() { 
         return {
+            bancos:[],
             servidor: {
                 espaco: this.$store.state.servidor_escolhido.espaco,
                 id: this.$store.state.servidor_escolhido.id,
@@ -145,15 +146,16 @@ export default {
                 status:'',
                 id: 0
             },
-            search: '',  
-            bancoId:''          
+            search: '',          
         
         } 
 
     },
     mounted(){
+        this.getAllBancos()
+
         this.bancoId = this.getbancobyId()
-        console.log('PAGINA: BANCO:')
+        console.log(this.servidor.ip)
         // Pra acessar a variavel do Store precisa usar this.$store.state
         console.log( this.$store.state.servidor_escolhido)
     },
@@ -215,9 +217,13 @@ export default {
             // console.log(response.data)
             this.response = true
           })
-
-          
-      }
+      },
+      getAllBancos(){
+            this.$http.get(`http://localhost:8082/springRest/banco/getAll?id=${this.servidor.ip}`)
+            .then(res =>{
+                this.Bancos = res.data;
+            })
+        }
 
     
    

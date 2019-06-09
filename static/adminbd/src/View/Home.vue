@@ -15,12 +15,12 @@
         <div class="add-serve border border-dark" id="add-serve">
             <h1 class="title"><p>Adicionar</p></h1>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="server.nome">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1">
-                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01">
+                <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1" v-model="server.ip">
+                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01" v-model="server.maquina">
                     <option selected>Machine</option>
                     <option value="1">AWS</option>
                     <option value="2">Digital Ocean</option>
@@ -29,16 +29,18 @@
             </div>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Processor" aria-label="Processor" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Processor" aria-label="Processor" aria-describedby="basic-addon1" v-model="server.processador">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Memory" aria-label="Memory" aria-describedby="basic-addon1">
-                <input type="text" class="form-control" placeholder="Space" aria-label="Space" aria-describedby="basic-addon1">
+                <input type="number" class="form-control" placeholder="Memory" aria-label="Memory" aria-describedby="basic-addon1" v-model="server.memoria">
+                <input type="number" class="form-control" placeholder="Space" aria-label="Space" aria-describedby="basic-addon1" v-model="server.espaco">
             </div>
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-lg" v-on:click="noneElemento">Include</button>
+                <button type="button" class="btn btn-danger btn-lg" v-on:click="noneElemento()">Cancel</button>
+                <button type="button" class="btn btn-success btn-lg" v-on:click="createServe()">Include</button>
+                
             </div>
         </div>
 
@@ -47,7 +49,7 @@
             <div class="input-group mb-3 col-4 mx-auto">
                 <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="search_ip">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -63,7 +65,7 @@
                 </tr>
             </thead>
             <tbody class="tbody">
-                <tr class="servs" v-for="server in this.servidores">
+                <tr class="servs" v-for="server in this.servidores" :key="server.id">
 
 
                     <!-- <th id="servs" class="text-center" v-on:click="openInfoServ"> sla</th>
@@ -77,7 +79,7 @@
                                 <button type="button" class="btn btn-success" id="btn-status" > √</button>
                             </div>
                             <div v-else>
-                                <button type="button" class="btn btn-danger" id="btn-alert"> √</button>
+                                <button type="button" class="btn btn-danger" id="btn-alert"> X</button>
                             </div>
                         </th> 
 
@@ -102,26 +104,31 @@ export default {
     },
     data() {
     return {
-      search: '',
-      servidores:[],
+        search: '',
+        servidores:[],
+        server:{
+            ip: '',
+            nome: '',
+            maquina:'',
+            processador: '',
+            memoria: '',
+            espaco: '',
+            status: 1
+        }
+
+
     }
   },
     mounted(){
         // this.habiServiButton()
         // this.openInfoServ()
-
-
         // Popula os dados na tela para lista de servidores
-        this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
-            .then(res =>{
-                this.servidores = res.data;
-            })
+        
+        this.getAllServidores()
+
+      
     },
     methods:{
-
-        
-
-
         blockElemento(){
   
             document.getElementById('add-serve').style.display = 'block'
@@ -130,6 +137,7 @@ export default {
         },
 
         search_ip(){
+                
             //Estac com problema de CORS - Arruamr
              this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}')
              .then(res => {
@@ -166,17 +174,45 @@ export default {
         },
 
         openInfoServ(server){
-            //primeiro parametro é QUAL METODO ELE VAI EXECUTAR DENTRO DO MUTATION!!!
-            // o segundo é o seu dado que voce quer enviar, e assim vai
             this.$store.commit('change',server)
             // console.table(server)
 
             this.$router.push({ path: 'banco'})
  
         },
+        getAllServidores(){
+            this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
+            .then(res =>{
+                this.servidores = res.data;
+            })
+        },
+        createServe(){
+            var params = {
+                    "ip": this.server.ip,
+                    "nome": this.server.nome,
+                    "maquina" : this.server.maquina,
+                    "processador": this.server.processador,
+                    "memoria": this.server.memoria,
+                    "espaco" : this.server.espaco,
+                    "status": this.server.status
 
-        
-
+                }
+                if(params.nome === '' || params.ip === '' || params.maquina === '' 
+                    || params.processador === '' || params.memoria === '' || params.espaco === ''
+                    || params.status === '') console.log("erro ao salvar")
+                else{
+                    this.$http.post(`http://localhost:8082/springRest/servidorPrincipal/save`, params)
+                    .then(response => {
+                    // JSON responses are automatically parsed.
+                    // this.response = response.data
+                    // this.banco.id = response.data
+                    console.log(response);
+                    // this.showResponse = true
+                    })
+                    this.getAllServidores()
+                    this.noneElemento()
+                }
+        }      
     }
         
 
@@ -212,7 +248,7 @@ export default {
   margin-top: 16px;
   margin-left: 20%;
   position: absolute;
-  height: 62%;
+  height: 75%;
   width: 35%;
   color: #fff;
   background: #e0e4e9;

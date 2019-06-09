@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -25,7 +29,7 @@ public class ServidorController {
 	
 	@Autowired
 	private ServidorRepository servidorRepo;
-	
+	@CrossOrigin
 	@RequestMapping(value = "/getServidorMaqServ")
 	@JsonView(View.ServidorHardware.class)
 	public ResponseEntity<List<Servidor>> getServidorMaqServ(@RequestParam(value="maquina") String maquina, @RequestParam(value="servidor") String servidor){
@@ -39,7 +43,7 @@ public class ServidorController {
 		return new	ResponseEntity<List<Servidor>>(listaServ, HttpStatus.OK);
 	}
 	
-	
+	@CrossOrigin
 	@RequestMapping(value ="/getByIp")
 	@JsonView(View.ServidorCompleto.class)
 	public ResponseEntity<List<Servidor>> get(@RequestParam(value="ip", defaultValue="1") String ip){
@@ -52,6 +56,7 @@ public class ServidorController {
 		return new	ResponseEntity<List<Servidor>>(servidor, HttpStatus.OK);
 
 	}
+	@CrossOrigin
 	@RequestMapping(value = "/getServip", method = RequestMethod.GET)
 	@JsonView(View.ServidorCompleto.class)
 	public  ResponseEntity<List<String>> getServip(){

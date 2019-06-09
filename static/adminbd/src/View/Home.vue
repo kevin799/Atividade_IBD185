@@ -49,7 +49,7 @@
             <div class="input-group mb-3 col-4 mx-auto">
                 <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="getAllServidores()">Search</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -86,7 +86,7 @@
                 </tr>
             </tbody>
             <tfoot>
-                <th>Total</th>
+                <th>Total: {{this.total}}</th>
             </tfoot>
         </table>
     </div>
@@ -105,7 +105,8 @@ export default {
     data() {
     return {
         search: '',
-        servidores:[],
+        servidores: '',
+        total:'',
         server:{
             ip: '',
             nome: '',
@@ -113,18 +114,22 @@ export default {
             processador: '',
             memoria: '',
             espaco: '',
-            status: 1
+            status: 1,
+            
         }
 
 
     }
   },
     mounted(){
+        
+        this.getAllServidores()
+        this.total = this.servidores.length
         // this.habiServiButton()
         // this.openInfoServ()
         // Popula os dados na tela para lista de servidores
         
-        this.getAllServidores()
+        
 
       
     },
@@ -134,18 +139,6 @@ export default {
             document.getElementById('add-serve').style.display = 'block'
 
 
-        },
-
-        search_ip(){
-                
-            //Estac com problema de CORS - Arruamr
-             this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip=${this.search}')
-             .then(res => {
-            // console.log(res)
-            // this.$router.push({ path: 'home'})
-            this.servidores = res;
-            console.log(res)
-            })
         },
         noneElemento(){
         
@@ -181,10 +174,23 @@ export default {
  
         },
         getAllServidores(){
+            if (this.search === ''){
             this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
             .then(res =>{
-                this.servidores = res.data;
+            this.servidores = res.data;
+            
             })
+            }
+            else{
+                  this.$http.get('http://localhost:8082/springRest/servidor/getByIp?ip='+this.search)
+             .then(res => {
+            this.servidores = res.data;
+            
+            
+            })
+            }
+            this.total = this.servidores.length
+
         },
         createServe(){
             var params = {
@@ -209,7 +215,6 @@ export default {
                     console.log(response);
                     // this.showResponse = true
                     })
-                    this.getAllServidores()
                     this.noneElemento()
                 }
         }      
@@ -226,8 +231,8 @@ export default {
 <style>
 .home{
     background: rgb(150, 149, 149);
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
     .thead{
         font-family: roboto;

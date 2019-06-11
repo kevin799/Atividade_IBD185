@@ -176,7 +176,6 @@ export default {
             this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
             .then(res =>{
             this.servidores = res.data;
-            console.log(this.servidores.length)
             
             })
             }
@@ -184,7 +183,6 @@ export default {
                   this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getByIp?ip='+this.search)
              .then(res => {
             this.servidores = res.data;
-            console.log(res.data)
             
             
             })
@@ -225,7 +223,7 @@ export default {
 <style>
 .home{
     background: rgb(150, 149, 149);
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
     .thead{

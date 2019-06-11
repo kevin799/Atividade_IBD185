@@ -50,7 +50,7 @@ public class ServidorController {
 		System.out.println(ip);
 		List<Servidor> servidor = servidorRepo.findByIp(ip);
 		
-		if(servidor == null) {
+		if(servidor == null) { 
 			return new	ResponseEntity<List<Servidor>>(HttpStatus.NOT_FOUND);
 		}
 		return new	ResponseEntity<List<Servidor>>(servidor, HttpStatus.OK);

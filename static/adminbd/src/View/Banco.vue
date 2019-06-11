@@ -137,6 +137,7 @@ export default {
                 status: this.$store.state.servidor_escolhido.status
 
             },
+            
             banco:{
                 name:'',
                 type:'',
@@ -153,7 +154,7 @@ export default {
     },
     mounted(){
         this.getAllBancos()
-
+        console.log(this.espaco)
         this.bancoId = this.getbancobyId()
         console.log(this.servidor.ip)
         // Pra acessar a variavel do Store precisa usar this.$store.state

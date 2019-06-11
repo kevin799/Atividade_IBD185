@@ -12,6 +12,7 @@ import br.gov.sp.fatec.model.Banco;
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.model.ServidorPrincipal;
 import br.gov.sp.fatec.repository.BancoRepository;
+import br.gov.sp.fatec.repository.ServidorPrincipalRepository;
 import br.gov.sp.fatec.repository.ServidorRepository;
 import br.gov.sp.fatec.service.BancoService;
 import br.gov.sp.fatec.service.ServidorPrincipalService;
@@ -30,6 +31,8 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 	@Autowired
 	private ServidorPrincipalService servPrServ;
 	private ServidorPrincipal servP;
+	@Autowired
+	private ServidorPrincipalRepository spr;
 	
 	public static void main(String[] args) {
 		
@@ -56,7 +59,7 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		////////////////////////////
 		servP = new ServidorPrincipal("192.161.1.12", "Servidor 2", "AWS", "i7", 8, "1Tb",1);
 		System.out.println("Encontrou com servidor principal ========>"+ servPrServ.salvar(servP));
-		
+		//spr.deslogaServidor("192.161.1.13");
 		//bancRep.findByAll("192.161.1.12");
 		long a = 1;
 		System.out.println("Busca por ip =====> " + servRep.buscaByIp(a).getMaquina());

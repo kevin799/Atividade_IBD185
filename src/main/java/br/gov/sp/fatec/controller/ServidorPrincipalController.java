@@ -59,7 +59,7 @@ public class ServidorPrincipalController {
 			return new ResponseEntity<List<ServidorPrincipal>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<ServidorPrincipal>>(servidor, HttpStatus.OK);
-	}
+	} 
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getByIp")

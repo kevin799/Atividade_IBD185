@@ -53,7 +53,8 @@ public class ServidorPrincipalController {
 	@RequestMapping(value = "/getAll")
 	//@JsonView(View.ServidorPrincipal.class)
 	public ResponseEntity<List<ServidorPrincipal>>findAll(){
-		List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serRepos.findAll();
+		//List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serRepos.findAll();
+		List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serR.lista();
 		if (servidor == null) {
 			return new ResponseEntity<List<ServidorPrincipal>>(HttpStatus.NOT_FOUND);
 		}

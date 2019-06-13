@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import VuexPersist from 'vuex-persist'
 Vue.use(Vuex)
 
 // Ao usar dentro do componente banco ou Home,
@@ -14,10 +15,21 @@ const state = { //esse é a variavel state que criei, mas pode criar outras se q
 //   resposta : 'Do you believe?'
 // }
 
+const vuexPersist = new VuexPersist({
+  key: 'my-sec-app',
+  storage: localStorage
+})
+
 
 export default new Vuex.Store({
 
-
+  plugins: [
+    vuexPersist.plugin
+  ],
+  state: {
+    usuario: null,
+    token: null
+  },
   
 // As mutations é o tipo de area que o VUEX faz as alterações das variaveis ou executam metodos
   mutations: {
@@ -29,6 +41,19 @@ export default new Vuex.Store({
       state.servidor_escolhido = servidor_escolhido
       // console.log("STORE: ")
       // console.log(state.servidor_escolhido);
+    },
+
+    setUsuario (state, usuario) {
+      console.log(`Adicinando Usuario = ${usuario}`)
+      state.usuario = usuario
+    },
+    setToken (state, token)  {
+      console.log(`Adicinando Token = ${token}`)
+      state.token = token
+    },
+    logout (state) {
+      state.token = null
+      state.usuario = null
     }
   },
 

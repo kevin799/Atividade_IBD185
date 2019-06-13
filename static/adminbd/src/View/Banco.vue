@@ -120,7 +120,7 @@
 
 //Importando o store 
 import { store } from '../store/store'
-
+import axios from 'axios'
 
 export default {
     component: {
@@ -168,13 +168,13 @@ export default {
 
         searchBanco(){
             console.log(this.search)
-            this.$http.post(`http://localhost:8082/springRest/banco/findByName?name=${this.search}`)
+            axios.post(`/banco/findByName?name=${this.search}`)
             .then(response => {
                 this.Bancos = response.data
-            })
+            }).catch(error => console.log(error))
         },
         updateServidor(servidor){
-            this.$http.post(`http://localhost:8082/springRest/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
+            axios.post(`/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
             .then(response => {
                 // JSON responses are automatically parsed.
                 // this.response = response.data
@@ -182,7 +182,7 @@ export default {
                 console.log(response);
                 console.log("Servidor Atualizado!")
                 // this.showResponse = true
-            })
+            }).catch(error => console.log(error))
         },
         blockElemento(){
   
@@ -195,14 +195,14 @@ export default {
          
         },
 
-        // teste(){
-        //     document.getElementById('add-bd').style.display = 'block'
-        //     document.getElementById('add-title').innerHTML = 'Alter BD'
-        // },
+        teste(){
+            document.getElementById('add-bd').style.display = 'block'
+            document.getElementById('add-title').innerHTML = 'Alter BD'
+        },
 
         deleteBanco(banco){
 
-
+            console.log(`banco ${banco} deletado com sucesso! \n\nMentira, é só um console.log`)
 
         },
 
@@ -229,16 +229,16 @@ export default {
                 console.log("Vendo parametros")
                 delete params.servidor.id
                 console.log(params)
-                this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
+                axios.post(`/banco/save`, params)
                 .then(response => {
                     // JSON responses are automatically parsed.
                     // this.response = response.data
                     // this.banco.id = response.data
                     console.log(response);
                     // this.showResponse = true
-                }),
+                }).catch(error => console.log(error)),
 
-                console.log('teste')
+                console.log('Realizando Alterações Banco')
                 this.Bancos.push(params)
                 console.log(this.Bancos)
                 this.noneElemento()
@@ -247,7 +247,7 @@ export default {
         },
 
     //     getbancobyId () {
-    //     this.$http.get(`http://localhost:8082/springRest/banco/findByID?id=1` )//+ this.search)
+    //     axios.get(`/banco/findByID?id=1` )//+ this.search)
     //       .then(response => {
     //         // JSON responses are automatically parsed.
     //         this.response = response.data
@@ -257,7 +257,7 @@ export default {
     //   },
       getAllBancos(){
           
-            this.$http.get(`http://localhost:8082/springRest/banco/getAll?ip=${this.servidor.ip}`)
+            axios.get(`/banco/getAll?ip=${this.servidor.ip}`)
             .then(res =>{
                 console.log("Lista de Bancos presentes neste servidor")
                 console.log(res.data)

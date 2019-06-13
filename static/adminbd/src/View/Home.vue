@@ -97,6 +97,7 @@
 
 <script>
 import { store } from '../store/store'
+import axios from 'axios'
 
 export default {
     component: {
@@ -135,20 +136,20 @@ export default {
 
         desligaServidor(ip){
 
-            this.$http.get(`http://localhost:8082/springRest/servidorPrincipal/desligaServidor?ip=${ip}`)
+            axios.get(`/servidorPrincipal/desligaServidor?ip=${ip}`)
             .then(res =>{
                 for (let i = 0; i < this.servidores.length; i++){
                     if (this.servidores[i].ip == ip){
                         this.servidores[i].status = 0;
                     }
                 }
-            })
+            }).catch(error => console.log(error))
 
         },
 
         ligaServidor(ip){
 
-            this.$http.get(`http://localhost:8082/springRest/servidorPrincipal/ligaServidor?ip=${ip}`)
+            axios.get(`/servidorPrincipal/ligaServidor?ip=${ip}`)
             .then(res =>{
             
                 for (let i = 0; i < this.servidores.length; i++){
@@ -156,7 +157,7 @@ export default {
                         this.servidores[i].status = 1;
                     }
                 }
-            })
+            }).catch(error => console.log(error))
         },
 
         blockElemento(){
@@ -202,19 +203,19 @@ export default {
         },
         getAllServidores(){
             if (this.search === ''){
-            this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
+            axios.get('/servidorPrincipal/getAll')
             .then(res =>{
             this.servidores = res.data;
             // console.log(res.data)
-            })
+            }).catch(error => console.log(error))
             }
             else{
-                  this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getByIp?ip='+this.search)
+                  axios.get('/servidorPrincipal/getByIp?ip='+this.search)
              .then(res => {
             this.servidores = res.data;
             
             
-            })
+            }).catch(error => console.log(error))
             }
             this.total = this.servidores.length
 
@@ -234,14 +235,14 @@ export default {
                     || params.processador === '' || params.memoria === '' || params.espaco === ''
                     || params.status === '') console.log("erro ao salvar")
                 else{
-                    this.$http.post(`http://localhost:8082/springRest/servidorPrincipal/save`, params)
+                    axios.post(`/servidorPrincipal/save`, params)
                     .then(response => {
                     // JSON responses are automatically parsed.
                     // this.response = response.data
                     // this.banco.id = response.data
                     console.log(response);
                     // this.showResponse = true
-                    })
+                    }).catch(error => console.log(error))
                     this.noneElemento()
                 }
         }      

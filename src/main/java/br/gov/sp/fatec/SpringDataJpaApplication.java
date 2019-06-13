@@ -48,6 +48,7 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		serv = new Servidor("192.161.1.12", "Servidor 2", "AWS", "i7", 8, "1Tb",1);
 		//servidorService.incluiServidor(serv);
 		//System.out.println("Encontrou========>"+ bancoService.incluiBanco("SQL Server", "Developer", "2017", "8082", "Microsoft","192.161.1.1"));
+		/*
 		Banco ban = new Banco("Oracle", "Developer", "2017", 8081, "",serv,1);
 		//ban.setServidor(new ArrayList<Servidor>());
 		//ban.getServidor().add(serv);
@@ -83,11 +84,14 @@ public class SpringDataJpaApplication implements CommandLineRunner{
 		////////////////////////////
 		//System.out.println("Encontrou========>"+servRep.findByQntip("192.161.1.2"));
 		//System.out.println("Encontrou========>"+bancRep.findByDev("Oracle"));
-		
+		*/
 		//System.out.println("Encontrou========>"+bancRep.findByContport("8083"));
 		//System.out.println(servRep.findByIp("192.161.1.2")!=null);
 		//System.out.println(servidorService.findByNome("192.161.1.1").getIp());
 		//System.out.println(servidorService.findById("192.161.1.1").getNome());
+		//bancoService.delete(bancRep.findById(2));
+		//System.out.println(bancRep.findById(2)==null);
+		
 		
 	}
 

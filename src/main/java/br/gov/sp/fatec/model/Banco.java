@@ -34,6 +34,7 @@ public class Banco {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView({View.BancoNomeTipo.class})
 	@Column(name = "BAN_ID")
 	private Long id;
 	

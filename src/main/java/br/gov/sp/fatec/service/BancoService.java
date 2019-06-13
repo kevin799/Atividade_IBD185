@@ -10,4 +10,6 @@ public interface BancoService {
 	
 	public List<Banco> listar(String ip);
 	
+	public void delete(Banco banco);
+	
 }

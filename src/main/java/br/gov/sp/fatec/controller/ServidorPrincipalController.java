@@ -54,7 +54,9 @@ public class ServidorPrincipalController {
 	//@JsonView(View.ServidorPrincipal.class)
 	public ResponseEntity<List<ServidorPrincipal>>findAll(){
 		List<ServidorPrincipal> servidor = (List<ServidorPrincipal>) serRepos.findAll();
-		
+		if (servidor == null) {
+			return new ResponseEntity<List<ServidorPrincipal>>(HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<List<ServidorPrincipal>>(servidor, HttpStatus.OK);
 	}
 	

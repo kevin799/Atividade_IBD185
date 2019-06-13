@@ -69,5 +69,17 @@ public class BancoController {
     	banco = banS.listar(ip);
     	return new ResponseEntity<List<Banco>>(banco, HttpStatus.OK);
     }
+    
+    @CrossOrigin
+    @RequestMapping(value = "/delete")
+    @JsonView(View.BancoCompleto.class)
+    public ResponseEntity<Banco> delete(@RequestParam(value="id") long id){
+    	Banco banco =bancoRepo.findById(id); 
+    	banS.delete(banco);
+    	return banco == null ?
+        		new ResponseEntity<>(HttpStatus.NOT_FOUND):
+                    new ResponseEntity<>(banco, HttpStatus.OK);
+    }
+    
    
 }

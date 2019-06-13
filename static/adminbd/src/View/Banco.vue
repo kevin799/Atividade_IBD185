@@ -83,6 +83,7 @@
         <table class="table">
             <thead class="thead text-light">
                 <tr>
+                    <th class="text-center border-right">ID</th>
                     <th class="text-center border-right">Name</th>
                     <th class="text-center border-right">Port</th>
                     <th class="text-center border-right">Developer</th>
@@ -95,7 +96,7 @@
                 </tr> -->
 
                  <tr id="bds" v-for="banco in this.Bancos">
-
+                    <th class="text-center"> {{banco.id}}</th>
                     <th class="text-center"> {{banco.nome}}</th>
                     <th class="text-center"> {{banco.porta}}</th>
                     <th class="text-center"> {{banco.desenvolvedor}}</th>
@@ -167,11 +168,17 @@ export default {
     methods:{
 
         searchBanco(){
+            if(this.search ===''){
+                this.getAllBancos();
+
+            }
+            else{
             console.log(this.search)
             axios.post(`/banco/findByName?name=${this.search}`)
             .then(response => {
                 this.Bancos = response.data
             }).catch(error => console.log(error))
+            }
         },
         updateServidor(servidor){
             axios.post(`/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
@@ -263,6 +270,16 @@ export default {
                 console.log(res.data)
                 this.Bancos = res.data;
             })
+        },
+        deleteBanco(banco){
+            axios.get(`/banco/delete?id=${banco.id}`)
+            .then(response => {
+
+                console.log(response);
+                console.log("Banco dedetado!")
+            this.getAllBancos();
+
+            }).catch(error => console.log(error))
         }
 
     

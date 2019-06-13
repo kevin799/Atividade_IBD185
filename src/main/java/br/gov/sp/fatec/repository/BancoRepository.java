@@ -14,6 +14,8 @@ public interface BancoRepository extends CrudRepository<Banco,Long>{
 	
 	public Banco findByPorta(Integer porta);
 	
+	public Banco findById(long id);
+	
 	//public Banco findById(Long id);
 	
 	
@@ -27,5 +29,6 @@ public interface BancoRepository extends CrudRepository<Banco,Long>{
 	public Banco findByBanco(@Param("id") long id);
 	
 	
+	 
 	
 }

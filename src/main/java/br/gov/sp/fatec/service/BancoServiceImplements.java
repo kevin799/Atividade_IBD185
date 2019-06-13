@@ -11,6 +11,7 @@ import br.gov.sp.fatec.model.Banco;
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.repository.BancoRepository;
 import br.gov.sp.fatec.repository.ServidorRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Service("BancoService")
 public class BancoServiceImplements implements BancoService{
@@ -22,6 +23,7 @@ public class BancoServiceImplements implements BancoService{
 	public BancoRepository bancRep;	
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	public Banco incluiBancoClasse(Banco banco) {
 		if(bancRep.findByContinsert(banco.getPorta(), banco.getServidor().getIp())==0) {
@@ -45,7 +47,17 @@ public class BancoServiceImplements implements BancoService{
 		for(Long num:l) {
 			banco.add(bancRep.findByBanco(num));
 		}
+		
 		return banco;
 	}
+
+	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void delete(Banco banco) {
+		bancRep.delete(banco);
+		
+	}
+
+	
 
 }

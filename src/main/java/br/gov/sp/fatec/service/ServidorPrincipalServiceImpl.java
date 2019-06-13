@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import br.gov.sp.fatec.model.Servidor;
 import br.gov.sp.fatec.model.ServidorPrincipal;
@@ -22,6 +23,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	public ServidorRepository serRep;
 	
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Transactional
 	public ServidorPrincipal salvar(ServidorPrincipal servidorP) {
 		ServidorPrincipal p = null;
@@ -40,6 +42,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	}
 
 	@Override
+	@PreAuthorize("isAuthenticated()")
 	@Transactional
 	public List<ServidorPrincipal> lista() {
 		List<ServidorPrincipal> retorno = new ArrayList<ServidorPrincipal>();
@@ -50,6 +53,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ServidorPrincipal ligarServidor(String ip) {
 		ServidorPrincipal s = null;
 		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
@@ -62,6 +66,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ServidorPrincipal desligaServidor(String ip) {
 		ServidorPrincipal s = null;
 		for (ServidorPrincipal servidor: serPrRep.findByIp(ip)) {
@@ -74,6 +79,7 @@ public class ServidorPrincipalServiceImpl implements ServidorPrincipalService{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ServidorPrincipal atualizaServidor(String ip, String nome, String maquina, String processador, int memoria,
 			String espaco) {
 		ServidorPrincipal s = null;

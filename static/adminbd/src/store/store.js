@@ -27,8 +27,8 @@ export default new Vuex.Store({
     change(state, servidor_escolhido) {
       //adicionando na variavel criada la em sima os dados recebidos
       state.servidor_escolhido = servidor_escolhido
-      console.log("STORE: ")
-      console.log(state.servidor_escolhido);
+      // console.log("STORE: ")
+      // console.log(state.servidor_escolhido);
     }
   },
 

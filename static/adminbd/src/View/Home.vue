@@ -76,10 +76,10 @@
                         <th class="text-center"> {{server.ip}} </th>
                         <th class=" text-center" >
                             <div v-if="server.status == 1">
-                                <button type="button" class="btn btn-success" id="btn-status" > √</button>
+                                <button type="button" class="btn btn-success" id="btn-status" v-on:click="desligaServidor(server.ip)"> √</button>
                             </div>
                             <div v-else>
-                                <button type="button" class="btn btn-danger" id="btn-alert"> X</button>
+                                <button type="button" class="btn btn-danger" id="btn-alert" v-on:click="ligaServidor(server.ip)"> X</button>
                             </div>
                         </th> 
 
@@ -132,6 +132,33 @@ export default {
       
     },
     methods:{
+
+        desligaServidor(ip){
+
+            this.$http.get(`http://localhost:8082/springRest/servidorPrincipal/desligaServidor?ip=${ip}`)
+            .then(res =>{
+                for (let i = 0; i < this.servidores.length; i++){
+                    if (this.servidores[i].ip == ip){
+                        this.servidores[i].status = 0;
+                    }
+                }
+            })
+
+        },
+
+        ligaServidor(ip){
+
+            this.$http.get(`http://localhost:8082/springRest/servidorPrincipal/ligaServidor?ip=${ip}`)
+            .then(res =>{
+            
+                for (let i = 0; i < this.servidores.length; i++){
+                    if (this.servidores[i].ip == ip){
+                        this.servidores[i].status = 1;
+                    }
+                }
+            })
+        },
+
         blockElemento(){
   
             document.getElementById('add-serve').style.display = 'block'
@@ -165,6 +192,8 @@ export default {
         },
 
         openInfoServ(server){
+            // console.log("Antes de enviar Stroe")
+            // console.log(server)
             this.$store.commit('change',server)
             // console.table(server)
 
@@ -176,7 +205,7 @@ export default {
             this.$http.get('http://localhost:8082/springRest/servidorPrincipal/getAll')
             .then(res =>{
             this.servidores = res.data;
-            
+            // console.log(res.data)
             })
             }
             else{

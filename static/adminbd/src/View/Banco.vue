@@ -1,3 +1,4 @@
+
 <template>
   <div class="banco">
     <div class="title">
@@ -51,17 +52,18 @@
             <div class="info-serve">
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="servidor.nome">
-                    <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.ip">
+                    <input type="text" class="form-control" placeholder="IP Address" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.ip" disabled>
                     
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Machine" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.maquina">
-                    <input type="text" class="form-control" placeholder="Processor" aria-label="Ip" aria-describedby="basic-addon1" v-model="servidor.processador">
+                    <input type="text" class="form-control" placeholder="Machine" aria-label="Machine" aria-describedby="basic-addon1" v-model="servidor.maquina">
+                    <input type="text" class="form-control" placeholder="Processor" aria-label="Processador" aria-describedby="basic-addon1" v-model="servidor.processador">
                 </div>
                 <div class="input-group mb-3 pb-3 pr-5">
-                    <input type="text" class="form-control" placeholder="Memory" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="servidor.memoria">
+                    <input type="text" class="form-control" placeholder="Memory" aria-label="Memoria" aria-describedby="button-addon2" v-model="servidor.memoria">
+                    <input type="text" class="form-control" placeholder="Espaco" aria-label="Espaco" aria-describedby="button-addon2" v-model="servidor.espaco">
                     <div class="input-group-append">
-                        <button class="btn btn-primary mt-2 " type="button" id="button-addon2">Alter</button>
+                        <button class="btn btn-primary mt-2 " type="button" id="button-addon2" v-on:click="updateServidor(servidor)">Aplicar Alterações</button>
                     </div>
                 </div>
             </div>
@@ -69,9 +71,9 @@
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
-                <input type="text" class=" mt-3 form-control" placeholder="Search Banco" v-model="search">
+                <input type="text" class=" mt-3 form-control" placeholder="Procurar Banco por NOME" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="searchBanco">Search</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -92,15 +94,17 @@
                     <th class="text-center"> {{banco.name}}</th>
                 </tr> -->
 
-                <!-- <tr id="bds" v-for="teste in testes" :key="teste.name">
+                 <tr id="bds" v-for="banco in this.Bancos">
 
-                    <th class="text-center"> {{teste.name}}</th>
-                    <th class="text-center"> {{teste.port}}</th>
-                    <th class="text-center"> {{teste.developer}}</th>
+                    <th class="text-center"> {{banco.nome}}</th>
+                    <th class="text-center"> {{banco.porta}}</th>
+                    <th class="text-center"> {{banco.desenvolvedor}}</th>
+                    <!-- <th class="text-center"> {{banco.tipo}}</th>
+                    <th class="text-center"> {{banco.versao}}</th> -->
                     <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="teste()">Info</button>
-                     <button type="button" class="btn btn-danger" id="btn-status" v-on:click="teste()">Del</button>
+                     <button type="button" class="btn btn-danger" id="btn-status" v-on:click="deleteBanco(banco)">Del</button>
                      </th>
-                </tr> -->
+                </tr> 
             </tbody>
             <tfoot>
                 <th>Total</th>
@@ -125,7 +129,7 @@ export default {
     },
     data: function() { 
         return {
-            bancos:[],
+            Bancos:[],
             servidor: {
                 espaco: this.$store.state.servidor_escolhido.espaco,
                 id: this.$store.state.servidor_escolhido.id,
@@ -154,13 +158,32 @@ export default {
     },
     mounted(){
         this.getAllBancos()
-        console.log(this.espaco)
-        this.bancoId = this.getbancobyId()
-        console.log(this.servidor.ip)
+        // console.log(this.espaco)
+        // this.bancoId = this.getbancobyId()
+        // console.log(this.servidor.ip)
         // Pra acessar a variavel do Store precisa usar this.$store.state
-        console.log( this.$store.state.servidor_escolhido)
+        // console.log( this.$store.state.servidor_escolhido)
     },
     methods:{
+
+        searchBanco(){
+            console.log(this.search)
+            this.$http.post(`http://localhost:8082/springRest/banco/findByName?name=${this.search}`)
+            .then(response => {
+                this.Bancos = response.data
+            })
+        },
+        updateServidor(servidor){
+            this.$http.post(`http://localhost:8082/springRest/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
+            .then(response => {
+                // JSON responses are automatically parsed.
+                // this.response = response.data
+                // this.banco.id = response.data
+                console.log(response);
+                console.log("Servidor Atualizado!")
+                // this.showResponse = true
+            })
+        },
         blockElemento(){
   
             document.getElementById('add-bd').style.display = 'block'
@@ -172,56 +195,72 @@ export default {
          
         },
 
-        teste(){
-            document.getElementById('add-bd').style.display = 'block'
-            document.getElementById('add-title').innerHTML = 'Alter BD'
+        // teste(){
+        //     document.getElementById('add-bd').style.display = 'block'
+        //     document.getElementById('add-title').innerHTML = 'Alter BD'
+        // },
+
+        deleteBanco(banco){
+
+
+
         },
 
 
         //teste axios
 
-         createBanco () {
-         var params = {
-            
-            'nome': this.banco.name,
-            'tipo': this.banco.type,
-            'versao': this.banco.version,
-            'porta': this.banco.port,
-            'desenvolvedor': this.banco.developer,
-            'status': this.banco.status,
-            'ser_id': 1,
-            
+        createBanco () {
+            var params = {
+                
+                'nome': this.banco.name,
+                'tipo': this.banco.type,
+                'versao': this.banco.version,
+                'porta': this.banco.port,
+                'desenvolvedor': this.banco.developer,
+                'servidor': this.servidor,
+                'status': this.banco.status,
 
-        }
+            }
+                
+            if(params.nome === "" || params.tipo === "" || params.versao === '' || params.porta === '' ||
+                params.desenvolvedor === '' || params.status === '') return console.log("nunda da pra fazer nada")
             
-        if(params.nome === "" || params.tipo === "" || params.versao === '' || params.porta === '' ||
-            params.desenvolvedor === '' || params.status === '') return console.log("nunda da pra fazer nada")
-        else{
-        this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
-        .then(response => {
-            // JSON responses are automatically parsed.
-            // this.response = response.data
-            // this.banco.id = response.data
-            console.log(response);
-            // this.showResponse = true
-          }
-          ),
-        this.noneElemento()
-      
-        }
-         },
-        getbancobyId () {
-        this.$http.get(`http://localhost:8082/springRest/banco/findByID?id=1` )//+ this.search)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.response = response.data
-            // console.log(response.data)
-            this.response = true
-          })
-      },
+            else{
+                console.log("Vendo parametros")
+                delete params.servidor.id
+                console.log(params)
+                this.$http.post(`http://localhost:8082/springRest/banco/save`, params)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    // this.response = response.data
+                    // this.banco.id = response.data
+                    console.log(response);
+                    // this.showResponse = true
+                }),
+
+                console.log('teste')
+                this.Bancos.push(params)
+                console.log(this.Bancos)
+                this.noneElemento()
+
+            }
+        },
+
+    //     getbancobyId () {
+    //     this.$http.get(`http://localhost:8082/springRest/banco/findByID?id=1` )//+ this.search)
+    //       .then(response => {
+    //         // JSON responses are automatically parsed.
+    //         this.response = response.data
+    //         // console.log(response.data)
+    //         this.response = true
+    //       })
+    //   },
       getAllBancos(){
-            this.$http.get(`http://localhost:8082/springRest/banco/getAll?id=${this.servidor.ip}`)
+          
+            this.$http.get(`http://localhost:8082/springRest/banco/getAll?ip=${this.servidor.ip}`)
             .then(res =>{
+                console.log("Lista de Bancos presentes neste servidor")
+                console.log(res.data)
                 this.Bancos = res.data;
             })
         }

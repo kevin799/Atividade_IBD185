@@ -4,7 +4,7 @@
     <div class="title">
       <div class="container-title container-fluid mt-1 p-3 d-flex justify-content-between ">
         <div></div>
-        <h1 class="mt-1">Database</h1>
+        <!-- <h1 class="mt-1">Database</h1> -->
         <div>
              
         </div>
@@ -83,7 +83,7 @@
 
         <div class="cont-info conrtainer col-8 mx-auto pt-2">
             <div class=" subtitle d-flex justify-content-center mt-3">
-                <h3 >Configuration Server</h3>
+                <h3 >Configuração do Servidor</h3>
             
             </div>
             <div class="info-serve">

@@ -21,15 +21,17 @@ axios.interceptors.response.use(res => {
     // if (store.state.token){
     //   return res
     // }
+    console.log('opa')
     return res
     // console.log(res)
     // alert('Usuario nao autorizado!')
-    return null
+    
   }, error => {
     if(error.response.status === 403) {
       alert('Não autorizado!')
     }
     else if (error.response.status === 401) {
+      alert("Erro 401 Usuário não autenticado! \n- Enviando para tela de Login")
       store.commit('logout')
       router.push('/')
     }

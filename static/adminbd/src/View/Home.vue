@@ -1,9 +1,10 @@
+
 <template>
   <div class="home">
     <div class="title">
       <div class="container-fluid mt-1 p-3 d-flex justify-content-between">
         <div></div>
-        <h1>Servers</h1>
+        <h1>Servidores</h1>
         <div>
              
         </div>
@@ -15,7 +16,7 @@
         <div class="add-serve border border-dark" id="add-serve">
             <h1 class="title"><p>Adicionar</p></h1>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="server.nome">
+                <input type="text" class="form-control" placeholder="Nome" aria-label="Name" aria-describedby="basic-addon1" v-model="server.nome">
             </div>
       
             <div class="input-group mb-3">
@@ -47,9 +48,9 @@
 
         <div class="d-flex flex-row">
             <div class="input-group mb-3 col-4 mx-auto">
-                <input type="text" class=" mt-3 form-control" placeholder="Search Server" v-model="search">
+                <input type="text" class=" mt-3 form-control" placeholder="Buscar por IP" v-model="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="getAllServidores()">Search</button>
+                    <button class="btn btn-outline-secondary mt-3" type="button" id="search-serve" v-on:click="getAllServidores()">Buscar</button>
                 </div>
             </div>
             <div style="width: 100px">
@@ -76,7 +77,7 @@
                         <th class="text-center"> {{server.ip}} </th>
                         <th class=" text-center" >
                             <div v-if="server.status == 1">
-                                <button type="button" class="btn btn-success" id="btn-status" v-on:click="desligaServidor(server.ip)"> √</button>
+                                <button type="button" class="btn btn-success" id="btn-status" v-on:click="desligaServidor(server.ip)">O</button>
                             </div>
                             <div v-else>
                                 <button type="button" class="btn btn-danger" id="btn-alert" v-on:click="ligaServidor(server.ip)"> X</button>
@@ -85,9 +86,9 @@
 
                 </tr>
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
                 <th>Total: {{this.total}}</th>
-            </tfoot>
+            </tfoot> -->
         </table>
     </div>
 
@@ -143,6 +144,8 @@ export default {
                         this.servidores[i].status = 0;
                     }
                 }
+
+                alert("Servidor Desligado com sucesso!")
             }).catch(error => console.log(error))
 
         },
@@ -157,6 +160,8 @@ export default {
                         this.servidores[i].status = 1;
                     }
                 }
+
+                alert("Servidor Ligado com sucesso!")
             }).catch(error => console.log(error))
         },
 
@@ -202,21 +207,21 @@ export default {
  
         },
         getAllServidores(){
+            
             if (this.search === ''){
-            axios.get('/servidorPrincipal/getAll')
-            .then(res =>{
-            this.servidores = res.data;
-            // console.log(res.data)
-            }).catch(error => console.log(error))
+                axios.get('/servidorPrincipal/getAll')
+                .then(res =>{
+                this.servidores = res.data;
+                // console.log(res.data)
+                }).catch(error => console.log(error))
             }
             else{
-                  axios.get('/servidorPrincipal/getByIp?ip='+this.search)
-             .then(res => {
-            this.servidores = res.data;
-            
-            
-            }).catch(error => console.log(error))
+                axios.get('/servidorPrincipal/getByIp?ip='+this.search)
+                .then(res => {
+                this.servidores = res.data;
+                }).catch(error => console.log(error))
             }
+
             this.total = this.servidores.length
 
         },

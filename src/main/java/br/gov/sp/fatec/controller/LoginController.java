@@ -22,6 +22,7 @@ import br.gov.sp.fatec.security.Login;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
+@CrossOrigin
 public class LoginController {
     
     @Autowired

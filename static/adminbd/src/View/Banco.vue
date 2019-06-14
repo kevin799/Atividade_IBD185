@@ -220,15 +220,20 @@ export default {
             }
         },
         updateServidor(servidor){
-            axios.post(`/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
-            .then(response => {
-                // JSON responses are automatically parsed.
-                // this.response = response.data
-                // this.banco.id = response.data
-                // console.log(response);
-                alert("Servidor Atualizado!")
-                // this.showResponse = true
-            }).catch(error => console.log(error))
+
+            if (confirm("Você realmente deseja enviar as alterações?")){
+
+                axios.post(`/servidorPrincipal/atualizaServidorP?ip=${servidor.ip}&nome=${servidor.nome}&maquina=${servidor.maquina}&processador=${servidor.processador}&memoria=${servidor.memoria}&espaco=${servidor.espaco}`)
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    // this.response = response.data
+                    // this.banco.id = response.data
+                    alert("Servidor Atualizado!")
+                    console.log(response);
+
+                    // this.showResponse = true
+                }).catch(error => console.log(error))
+            }
         },
         blockElemento(){
   

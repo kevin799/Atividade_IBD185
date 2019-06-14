@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style  scoped>
 
 body {
   font-size: 62.5%;
@@ -76,6 +76,16 @@ body {
   background-size: cover;
   background-position: 50%;
   -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+
+
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .form {
@@ -97,7 +107,6 @@ body {
   -webkit-border-radius: 12px;
   border-radius: 12px;
 }
-
 .form .forceColor {
   width: 100%;
   height: 100%;
@@ -106,7 +115,51 @@ body {
   top: 0;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
+.form:before {
+  content: "";
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  background: inherit;
+  left: -5%;
+  right: 0;
+  bottom: 0;
+  top: -5%;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.form.goAway {
+  opacity: 0;
+  -moz-transform: scale(0.6) translate3d(-50%, 0, 0);
+  -ms-transform: scale(0.6) translate3d(-50%, 0, 0);
+  -webkit-transform: scale(0.6) translate3d(-50%, 0, 0);
+  transform: scale(0.6) translate3d(-50%, 0, 0);
+  -moz-transition: -moz-transform 200ms ease-in-out, opacity 100ms linear;
+  -o-transition: -o-transform 200ms ease-in-out, opacity 100ms linear;
+  -webkit-transition: -webkit-transform 200ms ease-in-out, opacity 100ms linear;
+  transition: transform 200ms ease-in-out, opacity 100ms linear;
+  -moz-transition-delay: 600ms;
+  -o-transition-delay: 600ms;
+  -webkit-transition-delay: 600ms;
+  transition-delay: 600ms;
+}
+.form .topbar .spanColor {
+  position: absolute;
+  width: 0px;
+  right: 20px;
+  height: 43px;
+  opacity: 0.2;
+  background-color: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  -moz-transition: width 150ms ease-in-out, background-color 150ms ease-in-out 250ms, border 150ms ease-in-out 250ms;
+  -o-transition: width 150ms ease-in-out, background-color 150ms ease-in-out 250ms, border 150ms ease-in-out 250ms;
+  -webkit-transition: width 150ms ease-in-out, background-color 150ms ease-in-out, border 150ms ease-in-out;
+  -webkit-transition-delay: 0s, 250ms, 250ms;
+  transition: width 150ms ease-in-out, background-color 150ms ease-in-out 250ms, border 150ms ease-in-out 250ms;
+}
 .form .topbar .input {
   display: block;
   width: 100%;
@@ -125,7 +178,24 @@ body {
   color: rgba(255, 255, 255, 0.4);
   padding: 10px 20px;
 }
-
+.form .topbar .input::-webkit-input-placeholder {
+  color: white;
+  font-size: 1.2rem;
+  font-family: Raleway;
+  line-height: 1.3rem;
+  font-weight: 200;
+}
+.form .topbar .input:focus {
+  outline: none;
+  color: white;
+  border: 1px solid white;
+}
+.form .topbar .input.disabled:hover {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.form .topbar .input:hover {
+  border: 1px solid white;
+}
 .form .submit {
   padding: 10px 20px;
   width: 100%;
@@ -142,5 +212,9 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
+
+
+
+
 
 </style>

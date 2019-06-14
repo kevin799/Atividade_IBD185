@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="title">
-      <div class="container-fluid mt-1 bg-dark p-3 d-flex justify-content-between">
+      <div class="container-fluid mt-1 p-3 d-flex justify-content-between">
         <div></div>
         <h1>Servers</h1>
         <div>
@@ -233,14 +233,16 @@ export default {
                 }
                 if(params.nome === '' || params.ip === '' || params.maquina === '' 
                     || params.processador === '' || params.memoria === '' || params.espaco === ''
-                    || params.status === '') console.log("erro ao salvar")
+                    || params.status === '') alert("Erro ao salvar - Verifique e preencha todos os campos")
                 else{
                     axios.post(`/servidorPrincipal/save`, params)
                     .then(response => {
                     // JSON responses are automatically parsed.
                     // this.response = response.data
                     // this.banco.id = response.data
-                    console.log(response);
+                    // console.log(response);
+                    alert("Servidor Cadastrado com sucesso!")
+                    this.getAllServidores()
                     // this.showResponse = true
                     }).catch(error => console.log(error))
                     this.noneElemento()
@@ -252,7 +254,7 @@ export default {
 
 <style>
 .home{
-    background: rgb(150, 149, 149);
+    background: rgb(255, 255, 255);
     height: 100vh;
     width: 100%;
 }
@@ -305,7 +307,7 @@ export default {
 }
 
 .title{
-    background: rgb(39, 43, 48);
+    background: rgb(255, 255, 255);
 }
   
 </style>

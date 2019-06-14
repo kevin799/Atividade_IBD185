@@ -13,23 +13,25 @@
   
 
     <div class="container"> 
+
+        <!-- Inicio - Adicinar Banco -->
         <div class="add-bd border border-dark" id="add-bd">
-            <h1 class="title" id='add-title'><p>Adicionar</p></h1>
+            <h1 class="title" id='add-title'><p>Adicionar Banco</p></h1>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" v-model="banco.name">
+                <input type="text" class="form-control" placeholder="Nome" aria-label="Name" aria-describedby="basic-addon1" v-model="banco.nome">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Type" aria-label="Type" aria-describedby="basic-addon1" v-model="banco.type">  
-                <input type="text" class="form-control" placeholder="Version" aria-label="Version" aria-describedby="basic-addon1" v-model="banco.version">  
+                <input type="text" class="form-control" placeholder="Tipo" aria-label="Type" aria-describedby="basic-addon1" v-model="banco.tipo">  
+                <input type="text" class="form-control" placeholder="Versao" aria-label="Version" aria-describedby="basic-addon1" v-model="banco.versao">  
             </div>
 
             <div class="input-group mb-3">
-                <input type="number" class="form-control" placeholder="Port" aria-label="Port" aria-describedby="basic-addon1" v-model="banco.port">
+                <input type="number" class="form-control" placeholder="Porta" aria-label="Port" aria-describedby="basic-addon1" v-model="banco.porta">
             </div>
       
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Developer" aria-label="Developer" aria-describedby="basic-addon1" v-model="banco.developer">
+                <input type="text" class="form-control" placeholder="Desenvolvedor" aria-label="Developer" aria-describedby="basic-addon1" v-model="banco.desenvolvedor">
                 <select class="custom-select mt-2 mr-3" id="inputGroupSelect01" v-model="banco.status">
                     <option selected>0</option>
                     <option value="1">1</option>
@@ -38,11 +40,46 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-danger" v-on:click="noneElemento()">Cancel</button>
-                <button type="button" class="btn btn-success " v-on:click="createBanco()">Save</button>
+                <button type="button" class="btn btn-danger" v-on:click="noneElemento()">Cancelar</button>
+                <button type="button" class="btn btn-success " v-on:click="createBanco()">Salvar</button>
                 
             </div>
         </div>
+        <!-- Fim - Adicinar Banco -->
+
+        <!-- Inicio - Alterar Banco -->
+        <div class="add-bd border border-dark" id="edit-bd">
+            <h1 class="title" id='add-title'><p>Informações do Banco</p></h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nome" aria-label="Name" aria-describedby="basic-addon1" v-model="banco.nome" disabled>
+            </div>
+      
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Tipo" aria-label="Type" aria-describedby="basic-addon1" v-model="banco.tipo" disabled>  
+                <input type="text" class="form-control" placeholder="Versao" aria-label="Version" aria-describedby="basic-addon1" v-model="banco.versao" disabled>  
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" placeholder="Porta" aria-label="Port" aria-describedby="basic-addon1" v-model="banco.porta" disabled>
+            </div>
+      
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Desenvolvedor" aria-label="Developer" aria-describedby="basic-addon1" v-model="banco.desenvolvedor" disabled>
+                <select class="custom-select mt-2 mr-3" id="inputGroupSelect01" v-model="banco.status" disabled>
+                    <option selected>0</option>
+                    <option value="1">1</option>
+                </select>  
+                
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-success" v-on:click="noneElemento()">Ok</button>
+                <!-- <button type="button" class="btn btn-success " v-on:click="editBanco(banco)">Save</button> -->
+                
+            </div>
+        </div>
+
+        <!-- Fim - Alterar Banco -->
 
         <div class="cont-info conrtainer col-8 mx-auto pt-2">
             <div class=" subtitle d-flex justify-content-center mt-3">
@@ -84,10 +121,10 @@
             <thead class="thead text-light">
                 <tr>
                     <th class="text-center border-right">ID</th>
-                    <th class="text-center border-right">Name</th>
-                    <th class="text-center border-right">Port</th>
-                    <th class="text-center border-right">Developer</th>
-                    <th class="text-center border-right ">Option</th>
+                    <th class="text-center border-right">Nome</th>
+                    <th class="text-center border-right">Porta</th>
+                    <th class="text-center border-right">Desenvolvedor</th>
+                    <th class="text-center border-right ">Opção</th>
                 </tr>
             </thead>
             <tbody class="tbody">
@@ -102,14 +139,14 @@
                     <th class="text-center"> {{banco.desenvolvedor}}</th>
                     <!-- <th class="text-center"> {{banco.tipo}}</th>
                     <th class="text-center"> {{banco.versao}}</th> -->
-                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="teste()">Info</button>
-                     <button type="button" class="btn btn-danger" id="btn-status" v-on:click="deleteBanco(banco)">Del</button>
+                    <th class=" text-center"> <button type="button" class="btn btn-success" id="btn-status" v-on:click="editBanco(banco)">Informações</button>
+                     <button type="button" class="btn btn-danger" id="btn-status" v-on:click="deleteBanco(banco)">Deletar</button>
                      </th>
                 </tr> 
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
                 <th>Total</th>
-            </tfoot>
+            </tfoot> -->
         </table>
     </div>
 
@@ -144,14 +181,15 @@ export default {
             },
             
             banco:{
-                name:'',
-                type:'',
-                version:'',
-                port:'',
-                developer:'',
+                nome:'',
+                tipo:'',
+                versao:'',
+                porta:'',
+                desenvolvedor:'',
                 status:'',
                 id: 0
             },
+
             search: '',          
         
         } 
@@ -159,6 +197,7 @@ export default {
     },
     mounted(){
         this.getAllBancos()
+        console.log(this.$store.state.servidor_escolhido.id)
         // console.log(this.espaco)
         // this.bancoId = this.getbancobyId()
         // console.log(this.servidor.ip)
@@ -186,8 +225,8 @@ export default {
                 // JSON responses are automatically parsed.
                 // this.response = response.data
                 // this.banco.id = response.data
-                console.log(response);
-                console.log("Servidor Atualizado!")
+                // console.log(response);
+                alert("Servidor Atualizado!")
                 // this.showResponse = true
             }).catch(error => console.log(error))
         },
@@ -199,12 +238,16 @@ export default {
         }, 
         noneElemento(){
             document.getElementById('add-bd').style.display = 'none'
+            document.getElementById('edit-bd').style.display = 'none'
          
         },
 
-        teste(){
-            document.getElementById('add-bd').style.display = 'block'
-            document.getElementById('add-title').innerHTML = 'Alter BD'
+        editBanco(banco){
+            //Essa função serve somente para popular os campos da tela
+            // por conta de como foi desenvolvido o front
+            this.banco = banco;
+            document.getElementById('edit-bd').style.display = 'block'
+
         },
 
         deleteBanco(banco){
@@ -219,23 +262,23 @@ export default {
         createBanco () {
             var params = {
                 
-                'nome': this.banco.name,
-                'tipo': this.banco.type,
-                'versao': this.banco.version,
-                'porta': this.banco.port,
-                'desenvolvedor': this.banco.developer,
+                'nome': this.banco.nome,
+                'tipo': this.banco.tipo,
+                'versao': this.banco.versao,
+                'porta': this.banco.porta,
+                'desenvolvedor': this.banco.desenvolvedor,
                 'servidor': this.servidor,
                 'status': this.banco.status,
 
             }
                 
-            if(params.nome === "" || params.tipo === "" || params.versao === '' || params.porta === '' ||
-                params.desenvolvedor === '' || params.status === '') return console.log("nunda da pra fazer nada")
+            if(params.nome === '' || params.tipo === '' || params.versao === '' || params.porta === '' ||
+                params.desenvolvedor === '' || params.status === '') return alert("Erro ao cadastrar Banco - Verifique todos os campos!")
             
             else{
-                console.log("Vendo parametros")
+                // console.log("Vendo parametros")
                 delete params.servidor.id
-                console.log(params)
+                // console.log(params)
                 axios.post(`/banco/save`, params)
                 .then(response => {
                     // JSON responses are automatically parsed.
@@ -243,12 +286,16 @@ export default {
                     // this.banco.id = response.data
                     console.log(response);
                     // this.showResponse = true
-                }).catch(error => console.log(error)),
-
-                console.log('Realizando Alterações Banco')
-                this.Bancos.push(params)
-                console.log(this.Bancos)
+                //     this.Bancos.push(params)
+                // console.log(this.Bancos)
+                
                 this.noneElemento()
+                this.getAllBancos()
+                alert("Banco Cadastrado com sucesso!")
+                }).catch(error => console.log(error))
+
+                // console.log('Realizando Alterações Banco')
+                
 
             }
         },
@@ -294,8 +341,8 @@ export default {
         border-radius: none;
     }
     .container-title{
-        background-color: #26748E;
-        box-shadow: 0 0px 100px 0px #26748E;
+        background-color: rgb(255, 255, 255);
+        /* box-shadow: 0 0px 100px 0px #26748E; */
     }
     .thead{
         font-family: roboto;
@@ -314,7 +361,7 @@ export default {
   
 }
 .banco{
-    background: #96D3D9;
+    background: rgb(255, 255, 255);
     height: 100vh;
     width: 100vw;
 }
@@ -357,7 +404,7 @@ export default {
 .cont-info {
     margin-top: 2px;
     background: #D3D2D8;
-    box-shadow: 10px 10px 15px 2px #26748E;
+    box-shadow: 10px 10px 15px 2px rgb(151, 178, 187);
     
 
 }
